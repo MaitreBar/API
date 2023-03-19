@@ -1,1 +1,1 @@
-# API
+# API para o projeto do terceiro e quarto semestres da São Paulo Tech School.
