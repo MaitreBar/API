@@ -1,5 +1,7 @@
 package maitre.API;
 
+import maitre.API.Interface.IReserva;
+
 import java.util.ArrayList;
 import java.util.List;
 
