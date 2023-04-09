@@ -1,4 +1,6 @@
-package maitre.API;
+package maitre.API.entidade;
+
+import maitre.API.repositorio.IReserva;
 
 import java.util.ArrayList;
 import java.util.List;
