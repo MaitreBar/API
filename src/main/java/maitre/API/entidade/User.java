@@ -1,6 +1,5 @@
 package maitre.API.entidade;
 
-<<<<<<< HEAD:src/main/java/maitre/API/entidade/User.java
 import maitre.API.repositorio.IReserva;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -9,10 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
-=======
-import maitre.API.Interface.IReserva;
-
->>>>>>> 721539f1b779c385c216e2e9b1bc369e5daa5880:src/main/java/maitre/API/User.java
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,10 +31,7 @@ public class User{
     private String cpf;
     @NotBlank
     private String rg;
-<<<<<<< HEAD:src/main/java/maitre/API/entidade/User.java
     @NotBlank
-=======
->>>>>>> 721539f1b779c385c216e2e9b1bc369e5daa5880:src/main/java/maitre/API/User.java
     private String senha;
 
     public String getSenha() {
@@ -63,13 +55,10 @@ public class User{
         this.cpf = cpf;
         this.rg = rg;
         this.senha = senha;
-<<<<<<< HEAD:src/main/java/maitre/API/entidade/User.java
     }
 
     public void setIdUser(int idUser) {
         this.idUser = idUser;
-=======
->>>>>>> 721539f1b779c385c216e2e9b1bc369e5daa5880:src/main/java/maitre/API/User.java
     }
 
     public int getIdUser() {
