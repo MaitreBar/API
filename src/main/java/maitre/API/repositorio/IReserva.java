@@ -1,9 +1,9 @@
 package maitre.API.repositorio;
 
-import maitre.API.entidade.User;
+import maitre.API.entidade.Usuario;
 
 public interface IReserva {
-    public void checkIn(User u);
+    public void checkIn(Usuario u);
 
-    public void checkOut(User u);
+    public void checkOut(Usuario u);
 }
