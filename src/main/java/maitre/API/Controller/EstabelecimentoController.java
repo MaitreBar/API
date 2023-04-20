@@ -34,4 +34,18 @@ public class EstabelecimentoController {
         return ResponseEntity.status(403).build();
     }
 
+    @PatchMapping ("/{id}/checkOut/{idReserva}")
+    public ResponseEntity<Void> checkOut(
+            @PathVariable Integer id,
+            @PathVariable Integer idReserva
+    ){
+        Estabelecimento estabelecimento = estabelecimentoRepository.findEstabelecimentoById(id);
+        if(estabelecimento.getReservas().get(idReserva).getCheckIn().equals(true)){
+            estabelecimento.getReservas().get(idReserva).setCheckIn(false);
+            estabelecimento.getReservas().get(idReserva).setCheckOut(true);
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(404).build();
+    }
+
 }
