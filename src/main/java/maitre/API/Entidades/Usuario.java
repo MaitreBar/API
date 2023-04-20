@@ -1,7 +1,6 @@
-package maitre.api.Entidades;
+package maitre.API.Entidades;
 
 import jakarta.persistence.*;
-import maitre.api.Entidades.Estabelecimento;
 
 import java.util.Date;
 
@@ -9,35 +8,19 @@ import java.util.Date;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String nome;
-    @ManyToOne
-    private Estabelecimento estabelecimento;
     private String email;
     private String cpf;
     private Date dtNasc;
     private String rg;
     private String senha;
 
-    public Usuario() {
-    }
-
-    public Usuario(Long id, String nome, Estabelecimento estabelecimento, String email, String cpf, Date dtNasc, String rg, String senha) {
-        this.id = id;
-        this.nome = nome;
-        this.estabelecimento = estabelecimento;
-        this.email = email;
-        this.cpf = cpf;
-        this.dtNasc = dtNasc;
-        this.rg = rg;
-        this.senha = senha;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -47,14 +30,6 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Estabelecimento getEstabelecimento() {
-        return estabelecimento;
-    }
-
-    public void setEstabelecimento(Estabelecimento estabelecimento) {
-        this.estabelecimento = estabelecimento;
     }
 
     public String getEmail() {

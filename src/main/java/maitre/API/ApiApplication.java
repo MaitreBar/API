@@ -1,4 +1,4 @@
-package maitre.api;
+package maitre.API;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

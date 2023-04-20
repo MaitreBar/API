@@ -1,13 +1,13 @@
-package maitre.api.controller;
+package maitre.API.Controller;
 
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
-import maitre.api.Entidades.Usuario;
-import maitre.api.repository.EstabelecimentoRepository;
-import maitre.api.repository.UsuarioRepository;
+import maitre.API.Entidades.Usuario;
+import maitre.API.repository.EstabelecimentoRepository;
+import maitre.API.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +20,6 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-    @Autowired
-    private EstabelecimentoRepository estabelecimentoRepository;
 
     @GetMapping
     public ResponseEntity<List<Usuario>> listaUsuarios(){
@@ -43,24 +41,24 @@ public class UsuarioController {
     @ApiResponses({
             @ApiResponse(
                     responseCode = "204",
-                    description = "Não ha filmes cadastrados",
+                    description = "Não há usuários cadastrados",
                     content = @Content(schema = @Schema(hidden = true))
             ),
-            @ApiResponse(responseCode = "200", description = "Filmes encontrados")
+            @ApiResponse(responseCode = "200", description = "Usuários encontrados")
     })
 
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizaUser(
-            @PathVariable Long id,
+            @PathVariable Integer id,
             @RequestBody @Valid Usuario usuario
     ){
         usuario.setId(id);
-        if (this.usuarioRepository.existsById(Long.valueOf(id))){
+        if (this.usuarioRepository.existsById(id)){
             Usuario usuarioAtualizado = this.usuarioRepository.save(usuario);
             return ResponseEntity.status(200).body(usuarioAtualizado);
         }
 
-        return null;
+        return ResponseEntity.status(404).build();
     }
 
     @PostMapping("/{email}/{senha}")
