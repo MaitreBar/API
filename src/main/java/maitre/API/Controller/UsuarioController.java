@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import maitre.API.Entidades.Usuario;
 import maitre.API.repository.EstabelecimentoRepository;
 import maitre.API.repository.UsuarioRepository;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,17 @@ public class UsuarioController {
             return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(usuarios);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> buscaPorId(
+            @PathVariable Integer id){
+//        List<Usuario> usuarios = usuarioRepository.findAll();
+        if (this.usuarioRepository.existsById(id)){
+            return ResponseEntity.of(this.usuarioRepository.findById(id));
+        }
+        return ResponseEntity.status(404).build();
+//        return ResponseEntity.of(this.usuarioRepository.findById(id));
     }
 
     @PostMapping
@@ -63,16 +75,27 @@ public class UsuarioController {
 
     @PostMapping("/{email}/{senha}")
     public ResponseEntity<String> login(
-            @PathVariable String nome,
+            @PathVariable String email,
             @PathVariable String senha
     ) {
         List<Usuario> usuario = usuarioRepository.findAll();
         for (Usuario u : usuario){
-            if (u.getNome().equals(nome) && u.getSenha().equals(senha)){
+            if (u.getEmail().equals(email) && u.getSenha().equals(senha)){
                 System.out.printf("O usuario %s Logado com sucesso" , u);
                 return ResponseEntity.status(200).build();
             }
         }
         return ResponseEntity.status(404).build();
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(
+            @PathVariable Integer id
+    ){
+        if (this.usuarioRepository.existsById(id)){
+            this.usuarioRepository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(404).build();
+    }
+
 }

@@ -40,12 +40,11 @@ public class EstabelecimentoController {
             @PathVariable Integer idReserva
     ){
         Estabelecimento estabelecimento = estabelecimentoRepository.findEstabelecimentoById(id);
-        if(estabelecimento.getReservas().get(idReserva).getCheckIn().equals(true)){
-            estabelecimento.getReservas().get(idReserva).setCheckIn(false);
+        if(estabelecimento.getReservas().get(idReserva).getCheckIn()){
             estabelecimento.getReservas().get(idReserva).setCheckOut(true);
             return ResponseEntity.status(200).build();
         }
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.status(403).build();
     }
 
 }
