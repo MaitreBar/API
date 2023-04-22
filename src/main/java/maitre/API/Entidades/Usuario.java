@@ -2,6 +2,7 @@ package maitre.API.Entidades;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -12,9 +13,36 @@ public class Usuario {
     private String nome;
     private String email;
     private String cpf;
-    private Date dtNasc;
+    private LocalDate dtNasc;
     private String rg;
     private String senha;
+    private String tipoComida;
+    private String tipoBebida;
+    private String tipoMusica;
+
+    public String getTipoComida() {
+        return tipoComida;
+    }
+
+    public void setTipoComida(String tipoComida) {
+        this.tipoComida = tipoComida;
+    }
+
+    public String getTipoBebida() {
+        return tipoBebida;
+    }
+
+    public void setTipoBebida(String tipoBebida) {
+        this.tipoBebida = tipoBebida;
+    }
+
+    public String getTipoMusica() {
+        return tipoMusica;
+    }
+
+    public void setTipoMusica(String tipoMusica) {
+        this.tipoMusica = tipoMusica;
+    }
 
     public Integer getId() {
         return id;
@@ -48,11 +76,11 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public Date getDtNasc() {
+    public LocalDate getDtNasc() {
         return dtNasc;
     }
 
-    public void setDtNasc(Date dtNasc) {
+    public void setDtNasc(LocalDate dtNasc) {
         this.dtNasc = dtNasc;
     }
 

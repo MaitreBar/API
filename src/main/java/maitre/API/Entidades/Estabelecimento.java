@@ -10,8 +10,6 @@ public class Estabelecimento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany(mappedBy = "nome")
-    private List<Usuario> usuarios;
     private String nome;
     private String logradouro;
     private String numero;
@@ -19,7 +17,7 @@ public class Estabelecimento {
     private int cnpj;
     private int qtAreas;
     @OneToMany
-    private List<Mesa> mesas;
+    private List<Assento> assentos;
     private String tipoComida;
     private String tipoBebida;
     private String tipoMusica;
@@ -33,6 +31,9 @@ public class Estabelecimento {
     public void setReservas(List<Reserva> reservas) {
         this.reservas = reservas;
     }
+    public void addReserva(Reserva reserva) {
+        reservas.add(reservas.size() - 1, reserva);
+    }
 
     public Integer getId() {
         return id;
@@ -40,14 +41,6 @@ public class Estabelecimento {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
     }
 
     public String getNome() {
@@ -98,12 +91,12 @@ public class Estabelecimento {
         this.qtAreas = qtAreas;
     }
 
-    public List<Mesa> getMesas() {
-        return mesas;
+    public List<Assento> getAssentos() {
+        return assentos;
     }
 
-    public void setMesas(List<Mesa> mesas) {
-        this.mesas = mesas;
+    public void setAssentos(List<Assento> assentos) {
+        this.assentos = assentos;
     }
 
     public String getTipoComida() {

@@ -6,9 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import maitre.API.Entidades.Usuario;
-import maitre.API.repository.EstabelecimentoRepository;
 import maitre.API.repository.UsuarioRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +37,6 @@ public class UsuarioController {
             return ResponseEntity.of(this.usuarioRepository.findById(id));
         }
         return ResponseEntity.status(404).build();
-//        return ResponseEntity.of(this.usuarioRepository.findById(id));
     }
 
     @PostMapping
@@ -69,7 +66,6 @@ public class UsuarioController {
             Usuario usuarioAtualizado = this.usuarioRepository.save(usuario);
             return ResponseEntity.status(200).body(usuarioAtualizado);
         }
-
         return ResponseEntity.status(404).build();
     }
 

@@ -15,25 +15,25 @@ public class Reserva {
     private LocalDateTime dtHoraReserva;
     private Boolean checkIn;
     private Boolean checkOut;
-    @OneToMany
-    private List<Mesa> mesas;
-    @OneToMany
-    private List<Usuario> usuarios;
+    @ManyToOne
+    private Estabelecimento estabelecimento;
+    @ManyToOne
+    private Usuario usuario;
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
+    public Estabelecimento getEstabelecimento() {
+        return estabelecimento;
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setEstabelecimento(Estabelecimento estabelecimento) {
+        this.estabelecimento = estabelecimento;
     }
 
-    public List<Mesa> getMesas() {
-        return mesas;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setMesas(List<Mesa> mesas) {
-        this.mesas = mesas;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Integer getId() {
