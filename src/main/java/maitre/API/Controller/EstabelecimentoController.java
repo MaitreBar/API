@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/estabelecimentos")
@@ -23,6 +23,15 @@ public class EstabelecimentoController {
             return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(lista);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Estabelecimento> buscarPorId(@PathVariable Integer id){
+        Optional<Estabelecimento> optEstabelecimento = estabelecimentoRepository.findById(id);
+        if (optEstabelecimento.isPresent()){
+            return ResponseEntity.status(200).body(optEstabelecimento.get());
+        }
+        return ResponseEntity.status(404).build();
     }
 
     @PostMapping
@@ -57,4 +66,9 @@ public class EstabelecimentoController {
         return ResponseEntity.status(403).build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Integer id){
+        estabelecimentoRepository.deleteById(id);
+        return ResponseEntity.status(200).build();
+    }
 }

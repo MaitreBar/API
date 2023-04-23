@@ -1,6 +1,5 @@
 package maitre.API.Controller;
 
-import maitre.API.Entidades.Assento;
 import maitre.API.Entidades.Estabelecimento;
 import maitre.API.Entidades.Reserva;
 import maitre.API.Entidades.Usuario;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/reservas")
@@ -33,6 +33,15 @@ public class ReservaController {
             return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(lista);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Reserva> buscarReservaPorId(@PathVariable Integer id){
+        Optional<Reserva> optReserva = reservaRepository.findById(id);
+        if(optReserva.isPresent()){
+            return ResponseEntity.status(200).body(optReserva.get());
+        }
+        return ResponseEntity.status(404).build();
     }
 
     @PostMapping
@@ -59,6 +68,12 @@ public class ReservaController {
             }
             return ResponseEntity.status(403).build();
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarReserva(@PathVariable Integer id){
+        reservaRepository.deleteById(id);
+        return ResponseEntity.status(200).build();
     }
 
 }

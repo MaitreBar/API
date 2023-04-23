@@ -3,7 +3,6 @@ package maitre.API.Entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 public class Reserva {
