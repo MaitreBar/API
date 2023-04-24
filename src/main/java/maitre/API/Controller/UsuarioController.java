@@ -74,6 +74,12 @@ public class UsuarioController {
         }
         return ResponseEntity.status(404).build();
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> logOff(){
+        return ResponseEntity.status(200).build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         if (this.usuarioRepository.existsById(id)){

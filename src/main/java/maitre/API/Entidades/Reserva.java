@@ -3,6 +3,7 @@ package maitre.API.Entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Reserva {
@@ -13,11 +14,41 @@ public class Reserva {
     @FutureOrPresent
     private LocalDateTime dtHoraReserva;
     private Boolean checkIn;
+    @FutureOrPresent
+    private LocalDateTime dtHoraCheckIn;
     private Boolean checkOut;
+    @FutureOrPresent
+    private LocalDateTime dtHoraCheckOut;
     @ManyToOne
     private Estabelecimento estabelecimento;
     @ManyToOne
     private Usuario usuario;
+    @OneToMany
+    private List<Assento> assentos;
+
+    public LocalDateTime getDtHoraCheckIn() {
+        return dtHoraCheckIn;
+    }
+
+    public void setDtHoraCheckIn(LocalDateTime dtHoraCheckIn) {
+        this.dtHoraCheckIn = dtHoraCheckIn;
+    }
+
+    public LocalDateTime getDtHoraCheckOut() {
+        return dtHoraCheckOut;
+    }
+
+    public void setDtHoraCheckOut(LocalDateTime dtHoraCheckOut) {
+        this.dtHoraCheckOut = dtHoraCheckOut;
+    }
+
+    public List<Assento> getAssentos() {
+        return assentos;
+    }
+
+    public void setAssentos(List<Assento> assentos) {
+        this.assentos = assentos;
+    }
 
     public Estabelecimento getEstabelecimento() {
         return estabelecimento;

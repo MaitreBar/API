@@ -1,5 +1,6 @@
 package maitre.API.Controller;
 
+import maitre.API.Entidades.Assento;
 import maitre.API.Entidades.Estabelecimento;
 import maitre.API.Entidades.Reserva;
 import maitre.API.Entidades.Usuario;
@@ -72,8 +73,12 @@ public class ReservaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarReserva(@PathVariable Integer id){
-        reservaRepository.deleteById(id);
-        return ResponseEntity.status(200).build();
+        Optional<Reserva> optionalReserva = reservaRepository.findById(id);
+        if (optionalReserva.isPresent()) {
+            reservaRepository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(404).build();
     }
 
 }

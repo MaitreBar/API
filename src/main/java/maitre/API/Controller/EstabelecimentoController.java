@@ -1,5 +1,6 @@
 package maitre.API.Controller;
 
+import maitre.API.Entidades.Assento;
 import maitre.API.Entidades.Estabelecimento;
 import maitre.API.Entidades.Reserva;
 import maitre.API.repository.EstabelecimentoRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,15 +44,21 @@ public class EstabelecimentoController {
 
     @PutMapping("/{id}/reservas")
     public ResponseEntity<Void> atualizarListaReservas(@RequestBody Reserva r, @PathVariable Integer id){
-        estabelecimentoRepository.findEstabelecimentoById(id).addReserva(r);
-        return ResponseEntity.status(200).build();
+        Optional<Estabelecimento> optionalEstabelecimento = estabelecimentoRepository.findById(id);
+        if(optionalEstabelecimento.isPresent()) {
+            optionalEstabelecimento.get().addReserva(r);
+            estabelecimentoRepository.save(optionalEstabelecimento.get());
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(404).build();
     }
 
     @PatchMapping ("/{id}/checkIn/{idReserva}")
     public ResponseEntity<Void> checkIn(@PathVariable Integer id, @PathVariable Integer idReserva){
-        Estabelecimento e = estabelecimentoRepository.findEstabelecimentoById(id);
-        if(!e.getReservas().get(idReserva).getCheckIn()){
-            e.getReservas().get(idReserva).setCheckIn(true);
+        Estabelecimento estabelecimento = estabelecimentoRepository.findEstabelecimentoById(id);
+        if(!estabelecimento.getReservas().get(idReserva).getCheckIn()){
+            estabelecimento.getReservas().get(idReserva).setDtHoraCheckOut(LocalDateTime.now());
+            estabelecimento.getReservas().get(idReserva).setCheckIn(true);
             return ResponseEntity.status(200).build();
         }
         return ResponseEntity.status(403).build();
@@ -60,6 +68,7 @@ public class EstabelecimentoController {
     public ResponseEntity<Void> checkOut(@PathVariable Integer id, @PathVariable Integer idReserva){
         Estabelecimento estabelecimento = estabelecimentoRepository.findEstabelecimentoById(id);
         if(estabelecimento.getReservas().get(idReserva).getCheckIn()){
+            estabelecimento.getReservas().get(idReserva).setDtHoraCheckOut(LocalDateTime.now());
             estabelecimento.getReservas().get(idReserva).setCheckOut(true);
             return ResponseEntity.status(200).build();
         }
@@ -68,7 +77,11 @@ public class EstabelecimentoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Integer id){
-        estabelecimentoRepository.deleteById(id);
-        return ResponseEntity.status(200).build();
+        Optional<Estabelecimento> optionalEstabelecimento = estabelecimentoRepository.findById(id);
+        if (optionalEstabelecimento.isPresent()) {
+            estabelecimentoRepository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(404).build();
     }
 }
