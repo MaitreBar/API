@@ -1,5 +1,6 @@
 package maitre.API.controller;
 
+
 import io.swagger.v3.oas.annotations.tags.Tag;
 import maitre.API.Entidades.Estabelecimento;
 import maitre.API.Entidades.Reserva;
@@ -75,8 +76,12 @@ public class ReservaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarReserva(@PathVariable Integer id){
-        reservaRepository.deleteById(id);
-        return ResponseEntity.status(200).build();
+        Optional<Reserva> optionalReserva = reservaRepository.findById(id);
+        if (optionalReserva.isPresent()) {
+            reservaRepository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(404).build();
     }
 
 }
