@@ -1,5 +1,6 @@
-package maitre.API.Controller;
+package maitre.API.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import maitre.API.Entidades.Estabelecimento;
 import maitre.API.Entidades.Reserva;
 import maitre.API.Entidades.Usuario;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
+@Tag(name = "Reserva", description = "Endpoints reserva")
 
 @RestController
 @RequestMapping("/reservas")

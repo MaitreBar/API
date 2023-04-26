@@ -1,9 +1,10 @@
-package maitre.API.Controller;
+package maitre.API.controller;
 
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import maitre.API.Entidades.Usuario;
 import maitre.API.repository.UsuarioRepository;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
+@Tag(name = "Usuario", description = "Endpoints Usuario")
 
 @RestController
 @RequestMapping("/usuarios")

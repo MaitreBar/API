@@ -1,14 +1,22 @@
-package maitre.API.Controller;
+package maitre.API.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import maitre.API.Entidades.Assento;
 import maitre.API.Entidades.Estabelecimento;
 import maitre.API.Entidades.Reserva;
+import maitre.API.ListaObj.ListaObj;
 import maitre.API.repository.EstabelecimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+
+@Tag(name = "Estabelecimento", description = "Endpoints Estabelecimento")
 
 @RestController
 @RequestMapping("/estabelecimentos")
@@ -38,6 +46,22 @@ public class EstabelecimentoController {
     public ResponseEntity<Estabelecimento> cadastrar(@RequestBody Estabelecimento e){
         Estabelecimento estabelecimento = estabelecimentoRepository.save(e);
         return ResponseEntity.status(201).body(estabelecimento);
+    }
+
+    @PostMapping("/test")
+    public ResponseEntity<Void> adiciona(@RequestBody Estabelecimento estabelecimento){
+        ListaObj<Estabelecimento> listaEstabelecimento = new ListaObj(5);
+        listaEstabelecimento.adiciona(estabelecimento);
+
+        listaEstabelecimento.exibe();
+        gravarArquivoCsv(listaEstabelecimento, "Estabelecimento");
+        System.out.println();
+        if (listaEstabelecimento.getTamanho() == 0){
+            return ResponseEntity.status(204).build();
+        }else {
+            leArquivoCsv("Estabelecimento");
+        }
+        return ResponseEntity.status(200).build();
     }
 
     @PutMapping("/{id}/reservas")
@@ -70,5 +94,101 @@ public class EstabelecimentoController {
     public ResponseEntity<Void> deletar(@PathVariable Integer id){
         estabelecimentoRepository.deleteById(id);
         return ResponseEntity.status(200).build();
+    }
+
+    public static void gravarArquivoCsv(ListaObj<Estabelecimento> lista, String nomeArquivo) {
+        FileWriter arq = null;
+        Formatter saida = null;
+        Boolean erroBoolean = false;
+
+        nomeArquivo += ".csv";
+
+        try {
+            arq = new FileWriter(nomeArquivo);
+            saida = new Formatter(arq);
+        } catch (IOException erro) {
+            System.out.println("Ocorreu um erro ao abrir");
+            System.exit(1);
+        }
+
+        try {
+            for (int i = 0; i < lista.getTamanho(); i++) {
+                Estabelecimento estabelecimento = lista.getElemento(i);
+                saida.format("%d;%s;%s;%s;%S;%S;%S;%S;%S;%S;%S;%S\n",
+                        estabelecimento.getId(),estabelecimento.getNome(),estabelecimento.getLogradouro(),
+                        estabelecimento.getNumero(),estabelecimento.getCep(),estabelecimento.getCnpj(),
+                        estabelecimento.getQtAreas(),estabelecimento.getAssento(),estabelecimento.getTipoComida(),
+                        estabelecimento.getTipoBebida(),estabelecimento.getTipoMusica(),estabelecimento.getReservas());
+            }
+        } catch (FormatterClosedException erro) {
+            System.out.println("Erro ao gravar o arquivo");
+            erroBoolean = true;
+        } finally {
+            saida.close();
+            try {
+                arq.close();
+            } catch (IOException erro) {
+                System.out.println("Erro ao fechar o arquivo");
+                erroBoolean = true;
+            }
+            if (erroBoolean) {
+                System.exit(1);
+            }
+        }
+    }
+
+    public static void leArquivoCsv(String nomeArq) {
+        FileReader arq = null;
+        Scanner entrada = null;
+        Boolean deuRuim = false;
+
+        nomeArq += ".csv";
+
+        try {
+            arq = new FileReader(nomeArq);
+            entrada = new Scanner(arq).useDelimiter(";|\\n");
+        } catch (FileNotFoundException erro) {
+            System.out.println("Arquivo nao encontrado");
+            System.exit(1);
+        }
+
+        try {
+            System.out.printf("%4S %-15S %-9S %4S %S %S %S %S %S %S %S %S\n",
+                    "id", "nome", "logadouro", "numero", "cep", "cnpj", "qtAreas", "assentos", "tipoComida", "tipoBebida", "tipoMusica", "reservas");
+            while (entrada.hasNext()) {
+                System.out.println(entrada.toString() );
+                int id = entrada.nextInt();
+                String nome = entrada.next();
+                String logradouro = entrada.next();
+                String numero = entrada.next();
+                String cep = entrada.next();
+                int cnpj = entrada.nextInt();
+                int qtAreas = entrada.nextInt();
+                String assentos = entrada.next();
+                String tipoComida = entrada.next();
+                String tipoBebida = entrada.next();
+                String tipoMusica = entrada.next();
+                String reservas = entrada.next();
+                System.out.printf("%4d %-15s %-9s %9s %9s %6d %1d %10s %10s %10s %10s \n",
+                        id, nome, logradouro, numero, cep, cnpj, qtAreas, assentos, tipoComida, tipoBebida, tipoMusica, reservas);
+            }
+        } catch (NoSuchElementException erro) {
+            System.out.println("Elemento solicitado no exssite");
+            deuRuim = true;
+        } catch (IllegalStateException erro) {
+            System.out.println("Erro na leitura do arquivo");
+            deuRuim = true;
+        } finally {
+            entrada.close();
+            try {
+                arq.close();
+            } catch (IOException erro) {
+                System.out.println("Erro ao fechar o arquivo");
+                deuRuim = true;
+            }
+            if (deuRuim) {
+                System.exit(1);
+            }
+        }
     }
 }

@@ -122,4 +122,20 @@ public class Estabelecimento {
     public void setTipoMusica(String tipoMusica) {
         this.tipoMusica = tipoMusica;
     }
+
+    public String getAssento() {
+        String stringAssentos = "";
+        for (Assento a : assentos) {
+            stringAssentos += a.toString()+";";
+        }
+        return stringAssentos;
+    }
+
+    public String getResesva() {
+        String stringReservas = "";
+        for (Reserva r : reservas) {
+            stringReservas += r.toString()+";";
+        }
+        return stringReservas;
+    }
 }

@@ -1,4 +1,4 @@
-package maitre.api;
+package maitre.API;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

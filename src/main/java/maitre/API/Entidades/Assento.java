@@ -28,4 +28,12 @@ public class Assento {
     public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
     }
+
+    @Override
+    public String toString() {
+        return "Assento{" +
+                "id=" + id +
+                ", disponivel=" + disponivel +
+                '}';
+    }
 }
