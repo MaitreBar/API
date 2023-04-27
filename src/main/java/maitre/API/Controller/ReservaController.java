@@ -1,13 +1,13 @@
-package maitre.API.controller;
+package maitre.API.Controller;
 
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import maitre.API.Entidades.Estabelecimento;
 import maitre.API.Entidades.Reserva;
 import maitre.API.Entidades.Usuario;
-import maitre.API.repository.AssentoRepository;
-import maitre.API.repository.EstabelecimentoRepository;
-import maitre.API.repository.ReservaRepository;
+import maitre.API.Repository.AssentoRepository;
+import maitre.API.Repository.EstabelecimentoRepository;
+import maitre.API.Repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

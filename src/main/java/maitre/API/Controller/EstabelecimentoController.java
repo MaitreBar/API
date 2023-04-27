@@ -1,10 +1,10 @@
-package maitre.API.controller;
+package maitre.API.Controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import maitre.API.Entidades.Estabelecimento;
 import maitre.API.Entidades.Reserva;
 import maitre.API.ListaObj.ListaObj;
-import maitre.API.repository.EstabelecimentoRepository;
+import maitre.API.Repository.EstabelecimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -142,9 +142,9 @@ public class EstabelecimentoController {
                 System.out.println("Erro ao fechar o arquivo");
                 erroBoolean = true;
             }
-            if (erroBoolean) {
-                System.exit(1);
-            }
+//            if (erroBoolean) {
+//                System.exit(1);
+//            }
         }
     }
 
@@ -197,9 +197,9 @@ public class EstabelecimentoController {
                 System.out.println("Erro ao fechar o arquivo");
                 deuRuim = true;
             }
-            if (deuRuim) {
-                System.exit(1);
-            }
+//            if (deuRuim) {
+//                System.exit(1);
+//            }
         }
     }
 }

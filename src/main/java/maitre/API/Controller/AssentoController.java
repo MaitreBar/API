@@ -1,7 +1,7 @@
-package maitre.API.controller;
+package maitre.API.Controller;
 
 import maitre.API.Entidades.Assento;
-import maitre.API.repository.AssentoRepository;
+import maitre.API.Repository.AssentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

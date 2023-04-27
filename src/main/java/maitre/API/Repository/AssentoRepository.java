@@ -1,4 +1,4 @@
-package maitre.API.repository;
+package maitre.API.Repository;
 
 import maitre.API.Entidades.Assento;
 import org.springframework.data.jpa.repository.JpaRepository;
