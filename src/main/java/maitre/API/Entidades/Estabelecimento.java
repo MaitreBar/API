@@ -18,9 +18,7 @@ public class Estabelecimento {
     private int qtAreas;
     @OneToMany
     private List<Assento> assentos;
-    private String tipoComida;
-    private String tipoBebida;
-    private String tipoMusica;
+    private String tags;
     @OneToMany
     private List<Reserva> reservas;
 
@@ -99,28 +97,12 @@ public class Estabelecimento {
         this.assentos = assentos;
     }
 
-    public String getTipoComida() {
-        return tipoComida;
+    public String getTags() {
+        return tags;
     }
 
-    public void setTipoComida(String tipoComida) {
-        this.tipoComida = tipoComida;
-    }
-
-    public String getTipoBebida() {
-        return tipoBebida;
-    }
-
-    public void setTipoBebida(String tipoBebida) {
-        this.tipoBebida = tipoBebida;
-    }
-
-    public String getTipoMusica() {
-        return tipoMusica;
-    }
-
-    public void setTipoMusica(String tipoMusica) {
-        this.tipoMusica = tipoMusica;
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     public String getAssento() {

@@ -13,11 +13,20 @@ public class Usuario {
     private String email;
     private String cpf;
     private LocalDate dtNasc;
+    private String celular;
     private String rg;
     private String senha;
     private String tipoComida;
     private String tipoBebida;
     private String tipoMusica;
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
 
     public String getTipoComida() {
         return tipoComida;
