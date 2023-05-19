@@ -7,8 +7,5 @@ public interface EstabelecimentoRepository extends JpaRepository<Estabelecimento
 
     Estabelecimento findEstabelecimentoById(Integer id);
     Estabelecimento findEstabelecimentoByCep(String cep);
-    Estabelecimento findEstabelecimentoByTipoBebida(String tipoBebida);
-    Estabelecimento findEstabelecimentoByTipoMusica(String tipoMusica);
-    Estabelecimento findEstabelecimentoByTipoComida(String tipoComida);
 
 }

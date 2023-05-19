@@ -16,9 +16,7 @@ public class Usuario {
     private String celular;
     private String rg;
     private String senha;
-    private String tipoComida;
-    private String tipoBebida;
-    private String tipoMusica;
+    private String tags;
 
     public String getCelular() {
         return celular;
@@ -28,28 +26,12 @@ public class Usuario {
         this.celular = celular;
     }
 
-    public String getTipoComida() {
-        return tipoComida;
+    public String getTags() {
+        return tags;
     }
 
-    public void setTipoComida(String tipoComida) {
-        this.tipoComida = tipoComida;
-    }
-
-    public String getTipoBebida() {
-        return tipoBebida;
-    }
-
-    public void setTipoBebida(String tipoBebida) {
-        this.tipoBebida = tipoBebida;
-    }
-
-    public String getTipoMusica() {
-        return tipoMusica;
-    }
-
-    public void setTipoMusica(String tipoMusica) {
-        this.tipoMusica = tipoMusica;
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     public Integer getId() {
