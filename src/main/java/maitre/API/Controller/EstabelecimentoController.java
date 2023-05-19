@@ -20,6 +20,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/estabelecimentos")
+@CrossOrigin("localhost:3000")
 public class EstabelecimentoController {
     @Autowired
     private EstabelecimentoRepository estabelecimentoRepository;
@@ -128,8 +129,7 @@ public class EstabelecimentoController {
                 saida.format("%d;%s;%s;%s;%S;%S;%S;%S;%S;%S;%S;%S\n",
                         estabelecimento.getId(),estabelecimento.getNome(),estabelecimento.getLogradouro(),
                         estabelecimento.getNumero(),estabelecimento.getCep(),estabelecimento.getCnpj(),
-                        estabelecimento.getQtAreas(),estabelecimento.getAssento(),estabelecimento.getTipoComida(),
-                        estabelecimento.getTipoBebida(),estabelecimento.getTipoMusica(),estabelecimento.getReservas());
+                        estabelecimento.getQtAreas(),estabelecimento.getAssento(),estabelecimento.getTags(),estabelecimento.getReservas());
             }
         } catch (FormatterClosedException erro) {
             System.out.println("Erro ao gravar o arquivo");

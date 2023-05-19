@@ -19,6 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/reservas")
+@CrossOrigin("localhost:3000")
 public class ReservaController {
     @Autowired
     private ReservaRepository reservaRepository;
