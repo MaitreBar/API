@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin("localhost:3000")
+@CrossOrigin("http://localhost:3000/")
 public class UsuarioController {
 
     @Autowired
