@@ -1,7 +1,7 @@
 INSERT INTO estabelecimento
-(nome, logradouro, numero, cep, cnpj, qt_areas, tags)
+(nome, logradouro, numero, cep, cnpj, tags)
 VALUES
-('Terraço','Rua terraço','58913019', 0491400, 159753, 5, 'Batata frita com torresmo, Torre de chopp, Jazz');
+('Terraço','Rua terraço','58913019', '0491400', '159753', 'Batata frita com torresmo, Torre de chopp, Jazz');
 
 INSERT INTO assento
 (disponivel)

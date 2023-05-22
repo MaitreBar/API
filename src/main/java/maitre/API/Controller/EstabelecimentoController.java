@@ -129,7 +129,7 @@ public class EstabelecimentoController {
                 saida.format("%d;%s;%s;%s;%S;%S;%S;%S;%S;%S;%S;%S\n",
                         estabelecimento.getId(),estabelecimento.getNome(),estabelecimento.getLogradouro(),
                         estabelecimento.getNumero(),estabelecimento.getCep(),estabelecimento.getCnpj(),
-                        estabelecimento.getQtAreas(),estabelecimento.getAssento(),estabelecimento.getTags(),estabelecimento.getReservas());
+                        estabelecimento.getAssento(),estabelecimento.getTags(),estabelecimento.getReservas());
             }
         } catch (FormatterClosedException erro) {
             System.out.println("Erro ao gravar o arquivo");
