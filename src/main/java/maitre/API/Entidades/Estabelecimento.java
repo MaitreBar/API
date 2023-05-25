@@ -11,16 +11,104 @@ public class Estabelecimento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+    private String senha;
     private String logradouro;
     private String numero;
-    private int cep;
-    private int cnpj;
-    private int qtAreas;
+    private String complemento;
+    private String cep;
+    private String diasDaSemana;
+    private String faixaDePreco;
+    private String cnpj;
+    private String horarioAbertura;
+    private String horarioFechamento;
+    private String descricao;
+    private String email;
+
+    public String getFaixaDePreco() {
+        return faixaDePreco;
+    }
+
+    public void setFaixaDePreco(String faixaDePreco) {
+        this.faixaDePreco = faixaDePreco;
+    }
+
     @OneToMany
     private List<Assento> assentos;
     private String tags;
     @OneToMany
     private List<Reserva> reservas;
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getDiasDaSemana() {
+        return diasDaSemana;
+    }
+
+    public void setDiasDaSemana(String diasDaSemana) {
+        this.diasDaSemana = diasDaSemana;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getHorarioAbertura() {
+        return horarioAbertura;
+    }
+
+    public void setHorarioAbertura(String horarioAbertura) {
+        this.horarioAbertura = horarioAbertura;
+    }
+
+    public String getHorarioFechamento() {
+        return horarioFechamento;
+    }
+
+    public void setHorarioFechamento(String horarioFechamento) {
+        this.horarioFechamento = horarioFechamento;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public List<Reserva> getReservas() {
         return reservas;
@@ -30,7 +118,7 @@ public class Estabelecimento {
         this.reservas = reservas;
     }
     public void addReserva(Reserva reserva) {
-        reservas.add(reservas.size() - 1, reserva);
+        this.reservas.add(reservas.size() - 1, reserva);
     }
 
     public Integer getId() {
@@ -63,30 +151,6 @@ public class Estabelecimento {
 
     public void setNumero(String numero) {
         this.numero = numero;
-    }
-
-    public int getCep() {
-        return cep;
-    }
-
-    public void setCep(int cep) {
-        this.cep = cep;
-    }
-
-    public int getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(int cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public int getQtAreas() {
-        return qtAreas;
-    }
-
-    public void setQtAreas(int qtAreas) {
-        this.qtAreas = qtAreas;
     }
 
     public List<Assento> getAssentos() {

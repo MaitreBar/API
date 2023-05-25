@@ -7,19 +7,23 @@ import maitre.API.Entidades.Assento;
 import maitre.API.Entidades.Estabelecimento;
 import maitre.API.Entidades.Usuario;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 public class ListagemReservaDto {
-    private LocalDateTime dtHoraReserva;
+    private LocalDate dtReserva;
+    private LocalTime HoraReserva;
     private LocalDateTime dtHoraCheckIn;
     private LocalDateTime dtHoraCheckOut;
     private Estabelecimento estabelecimento;
     private Usuario usuario;
     private List<Assento> assentos;
 
-    public ListagemReservaDto(LocalDateTime dtHoraReserva, LocalDateTime dtHoraCheckIn, LocalDateTime dtHoraCheckOut, Estabelecimento estabelecimento, Usuario usuario, List<Assento> assentos) {
-        this.dtHoraReserva = dtHoraReserva;
+    public ListagemReservaDto(LocalDate dtReserva, LocalTime horaReserva, LocalDateTime dtHoraCheckIn, LocalDateTime dtHoraCheckOut, Estabelecimento estabelecimento, Usuario usuario, List<Assento> assentos) {
+        this.dtReserva = dtReserva;
+        HoraReserva = horaReserva;
         this.dtHoraCheckIn = dtHoraCheckIn;
         this.dtHoraCheckOut = dtHoraCheckOut;
         this.estabelecimento = estabelecimento;
@@ -27,12 +31,20 @@ public class ListagemReservaDto {
         this.assentos = assentos;
     }
 
-    public LocalDateTime getDtHoraReserva() {
-        return dtHoraReserva;
+    public LocalDate getDtReserva() {
+        return dtReserva;
     }
 
-    public void setDtHoraReserva(LocalDateTime dtHoraReserva) {
-        this.dtHoraReserva = dtHoraReserva;
+    public void setDtReserva(LocalDate dtReserva) {
+        this.dtReserva = dtReserva;
+    }
+
+    public LocalTime getHoraReserva() {
+        return HoraReserva;
+    }
+
+    public void setHoraReserva(LocalTime horaReserva) {
+        HoraReserva = horaReserva;
     }
 
     public LocalDateTime getDtHoraCheckIn() {
