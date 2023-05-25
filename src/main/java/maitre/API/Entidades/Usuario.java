@@ -3,6 +3,7 @@ package maitre.API.Entidades;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -17,6 +18,16 @@ public class Usuario {
     private String rg;
     private String senha;
     private String tags;
+    @OneToMany
+    private List<Reserva> reservas;
+
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
 
     public String getCelular() {
         return celular;

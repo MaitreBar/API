@@ -17,11 +17,21 @@ public class Estabelecimento {
     private String complemento;
     private String cep;
     private String diasDaSemana;
+    private String faixaDePreco;
     private String cnpj;
     private String horarioAbertura;
     private String horarioFechamento;
     private String descricao;
     private String email;
+
+    public String getFaixaDePreco() {
+        return faixaDePreco;
+    }
+
+    public void setFaixaDePreco(String faixaDePreco) {
+        this.faixaDePreco = faixaDePreco;
+    }
+
     @OneToMany
     private List<Assento> assentos;
     private String tags;
@@ -108,7 +118,7 @@ public class Estabelecimento {
         this.reservas = reservas;
     }
     public void addReserva(Reserva reserva) {
-        reservas.add(reservas.size() - 1, reserva);
+        this.reservas.add(reservas.size() - 1, reserva);
     }
 
     public Integer getId() {

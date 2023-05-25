@@ -2,7 +2,10 @@ package maitre.API.Entidades;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -12,12 +15,11 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @FutureOrPresent
-    private LocalDateTime dtHoraReserva;
+    private LocalDate dtReserva;
+    private LocalTime horaReserva;
     private Boolean checkIn;
-    @FutureOrPresent
     private LocalDateTime dtHoraCheckIn;
     private Boolean checkOut;
-    @FutureOrPresent
     private LocalDateTime dtHoraCheckOut;
     @ManyToOne
     private Estabelecimento estabelecimento;
@@ -34,12 +36,20 @@ public class Reserva {
         this.id = id;
     }
 
-    public LocalDateTime getDtHoraReserva() {
-        return dtHoraReserva;
+    public LocalDate getDtReserva() {
+        return dtReserva;
     }
 
-    public void setDtHoraReserva(LocalDateTime dtHoraReserva) {
-        this.dtHoraReserva = dtHoraReserva;
+    public void setDtReserva(LocalDate dtReserva) {
+        this.dtReserva = dtReserva;
+    }
+
+    public LocalTime getHoraReserva() {
+        return horaReserva;
+    }
+
+    public void setHoraReserva(LocalTime horaReserva) {
+        this.horaReserva = horaReserva;
     }
 
     public Boolean getCheckIn() {
@@ -78,16 +88,8 @@ public class Reserva {
         return estabelecimento;
     }
 
-    public void setEstabelecimento(Estabelecimento estabelecimento) {
-        this.estabelecimento = estabelecimento;
-    }
-
     public Usuario getUsuario() {
         return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public List<Assento> getAssentos() {
@@ -102,7 +104,8 @@ public class Reserva {
     public String toString() {
         return "Reserva{" +
                 "id=" + id +
-                ", dtHoraReserva=" + dtHoraReserva +
+                ", dtReserva=" + dtReserva +
+                ", horaReserva=" + horaReserva +
                 ", checkIn=" + checkIn +
                 ", dtHoraCheckIn=" + dtHoraCheckIn +
                 ", checkOut=" + checkOut +
