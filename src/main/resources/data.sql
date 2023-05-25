@@ -19,7 +19,7 @@ VALUES
 INSERT INTO usuario
 (nome, email, cpf, dt_nasc, rg, senha, tags)
 VALUES
-    ('Cesar', 'cesar@email.com', '12345678900', '2003-10-29', '123456789', '123', 'Batata frita com torresmo, Torre de chopp, Jazz');
+    ('Alex', 'alex@email.com', '12345678900', '1995-10-29', '123456789', 'AlexTeste123', 'Batata frita com torresmo, Torre de chopp, Jazz');
 
 INSERT INTO reserva
 (dt_reserva, hora_reserva, check_in, dt_hora_check_in, check_out, dt_hora_check_out)
