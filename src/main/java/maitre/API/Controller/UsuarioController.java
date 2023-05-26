@@ -68,12 +68,12 @@ public class UsuarioController {
     }
 
     @PostMapping("/{email}/{senha}")
-    public ResponseEntity<String> login(@PathVariable String email, @PathVariable String senha) {
+    public ResponseEntity<Usuario> login(@PathVariable String email, @PathVariable String senha) {
         List<Usuario> usuario = usuarioRepository.findAll();
         for (Usuario u : usuario){
             if (u.getEmail().equals(email) && u.getSenha().equals(senha)){
                 System.out.printf("O usuario %s Logado com sucesso" , u.getNome());
-                return ResponseEntity.status(200).build();
+                return ResponseEntity.status(200).body(u);
             }
         }
         return ResponseEntity.status(404).build();
