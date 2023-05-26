@@ -3,7 +3,6 @@ package maitre.API.Controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import maitre.API.Dto.ListagemReservaDto;
 import maitre.API.Entidades.Estabelecimento;
 import maitre.API.Entidades.Reserva;
 import maitre.API.Entidades.Usuario;
@@ -14,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -93,7 +90,15 @@ public class ReservaController {
 
     @PostMapping("/{idEstabelecimento}/selecionarLugar/{idAssento}")
     public ResponseEntity<Void> selecionarLugares(@RequestBody Usuario u, @PathVariable Integer idAssento, @PathVariable Integer idEstabelecimento){
-        Estabelecimento estabelecimento = estabelecimentoRepository.findEstabelecimentoById(idEstabelecimento);
+        Optional<Estabelecimento> optEstabelecimento = estabelecimentoRepository.findById(idEstabelecimento);
+        Estabelecimento estabelecimento = new Estabelecimento();
+
+        if (optEstabelecimento.isEmpty()) {
+            return ResponseEntity.status(404).build();
+        }
+
+        estabelecimento = optEstabelecimento.get();
+
         if(estabelecimento.getAssentos().isEmpty()) {
             return ResponseEntity.status(204).build();
         } else {

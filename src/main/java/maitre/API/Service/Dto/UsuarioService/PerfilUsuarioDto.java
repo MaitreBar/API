@@ -1,27 +1,16 @@
-package maitre.API.Dto;
+package maitre.API.Service.Dto.UsuarioService;
 
 import java.time.LocalDate;
 
-public class CriacaoUsuarioDto {
+public class PerfilUsuarioDto {
     private String nome;
     private String email;
     private String cpf;
     private LocalDate dtNasc;
     private String celular;
     private String rg;
-    private String senha;
     private String tags;
 
-    public CriacaoUsuarioDto(String nome, String email, String cpf, LocalDate dtNasc, String celular, String rg, String senha, String tags) {
-        this.nome = nome;
-        this.email = email;
-        this.cpf = cpf;
-        this.dtNasc = dtNasc;
-        this.celular = celular;
-        this.rg = rg;
-        this.senha = senha;
-        this.tags = tags;
-    }
 
     public String getNome() {
         return nome;
@@ -69,14 +58,6 @@ public class CriacaoUsuarioDto {
 
     public void setRg(String rg) {
         this.rg = rg;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public String getTags() {

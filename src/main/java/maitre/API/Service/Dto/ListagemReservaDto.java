@@ -1,4 +1,4 @@
-package maitre.API.Dto;
+package maitre.API.Service.Dto;
 
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;

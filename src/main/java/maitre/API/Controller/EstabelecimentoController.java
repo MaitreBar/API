@@ -53,7 +53,6 @@ public class EstabelecimentoController {
     public ResponseEntity<Void> adiciona(@RequestBody Estabelecimento estabelecimento){
         ListaObj<Estabelecimento> listaEstabelecimento = new ListaObj(5);
         listaEstabelecimento.adiciona(estabelecimento);
-
         listaEstabelecimento.exibe();
         gravarArquivoCsv(listaEstabelecimento, "Estabelecimento");
         System.out.println();

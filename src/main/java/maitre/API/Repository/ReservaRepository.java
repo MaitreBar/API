@@ -1,12 +1,10 @@
 package maitre.API.Repository;
 
-import maitre.API.Dto.ListagemReservaDto;
 import maitre.API.Entidades.Reserva;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
 
