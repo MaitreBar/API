@@ -1,6 +1,6 @@
 package maitre.API.Service.Dto.UsuarioService;
 
-import maitre.API.Entidades.Usuario;
+import maitre.API.Domain.Entidades.Usuario;
 
 public class UsuarioMapper {
 
@@ -48,7 +48,7 @@ public class UsuarioMapper {
         return usuario;
     }
 
-    public static PerfilUsuarioDto of(Usuario usuario){
+    public static PerfilUsuarioDto mapCriacaoDTO(Usuario usuario){
         PerfilUsuarioDto perfilUsuarioDto = new PerfilUsuarioDto();
 
         perfilUsuarioDto.setNome(usuario.getNome());

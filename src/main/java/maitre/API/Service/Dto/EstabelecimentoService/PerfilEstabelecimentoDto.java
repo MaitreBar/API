@@ -1,8 +1,6 @@
-package maitre.API.Service.Dto;
+package maitre.API.Service.Dto.EstabelecimentoService;
 
-import jakarta.persistence.OneToMany;
-import maitre.API.Entidades.Assento;
-import maitre.API.Entidades.Reserva;
+import maitre.API.Domain.Entidades.Assento;
 
 import java.util.List;
 
@@ -12,21 +10,23 @@ public class PerfilEstabelecimentoDto {
     private String numero;
     private int cep;
     private int cnpj;
-    private int qtAreas;
-    private List<Assento> assentos;
+    private String assentos;
     private String tags;
     private  String email;
 
-    public PerfilEstabelecimentoDto(String nome, String logradouro, String numero, int cep, int cnpj, int qtAreas, List<Assento> assentos, String tags, String email) {
+    public PerfilEstabelecimentoDto() {
         this.nome = nome;
         this.logradouro = logradouro;
         this.numero = numero;
         this.cep = cep;
         this.cnpj = cnpj;
-        this.qtAreas = qtAreas;
-        this.assentos = assentos;
+        this.assentos = assentos.toString();
         this.tags = tags;
         this.email = email;
+    }
+
+    public void setAssentos(List<Assento> assentos) {
+        this.assentos = assentos.toString();
     }
 
     public String getNome() {
@@ -69,22 +69,14 @@ public class PerfilEstabelecimentoDto {
         this.cnpj = cnpj;
     }
 
-    public int getQtAreas() {
-        return qtAreas;
-    }
 
-    public void setQtAreas(int qtAreas) {
-        this.qtAreas = qtAreas;
-    }
-
-    public List<Assento> getAssentos() {
+    public String getAssentos() {
         return assentos;
     }
 
-    public void setAssentos(List<Assento> assentos) {
+    public void setAssentos(String assentos) {
         this.assentos = assentos;
     }
-
     public String getTags() {
         return tags;
     }
@@ -100,4 +92,5 @@ public class PerfilEstabelecimentoDto {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

@@ -1,4 +1,4 @@
-package maitre.API.Service.Dto;
+package maitre.API.Service.Dto.EstabelecimentoService;
 
 public class CriacaoEstabelecimentoDto {
 
@@ -7,17 +7,12 @@ public class CriacaoEstabelecimentoDto {
     private String numero;
     private int cep;
     private int cnpj;
-    private int qtAreas;
     private String tags;
+    private String email;
+    private String assento;
 
-    public CriacaoEstabelecimentoDto (String nome, String logradouro, String numero, int cep, int cnpj, int qtAreas, String tags) {
-        this.nome = nome;
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.cep = cep;
-        this.cnpj = cnpj;
-        this.qtAreas = qtAreas;
-        this.tags = tags;
+    public CriacaoEstabelecimentoDto() {
+
     }
 
     public String getNome() {
@@ -60,19 +55,19 @@ public class CriacaoEstabelecimentoDto {
         this.cnpj = cnpj;
     }
 
-    public int getQtAreas() {
-        return qtAreas;
-    }
-
-    public void setQtAreas(int qtAreas) {
-        this.qtAreas = qtAreas;
-    }
-
     public String getTags() {
         return tags;
     }
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public void setAssento(String assento) {
+        this.assento = assento;
+    }
+
+    public String getAssento() {
+        return assento;
     }
 }

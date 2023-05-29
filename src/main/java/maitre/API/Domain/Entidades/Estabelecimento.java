@@ -1,4 +1,4 @@
-package maitre.API.Entidades;
+package maitre.API.Domain.Entidades;
 
 import jakarta.persistence.*;
 
@@ -128,6 +128,7 @@ public class Estabelecimento {
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     public String getNome() {
         return nome;

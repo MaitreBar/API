@@ -1,4 +1,4 @@
-package maitre.API.Entidades;
+package maitre.API.Domain.Entidades;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
@@ -111,5 +111,13 @@ public class Reserva {
                 ", checkOut=" + checkOut +
                 ", dtHoraCheckOut=" + dtHoraCheckOut +
                 '}';
+    }
+
+    public void setEstabelecimento(Estabelecimento estabelecimento) {
+        this.estabelecimento = estabelecimento;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

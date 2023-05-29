@@ -1,8 +1,8 @@
 package maitre.API.Controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import maitre.API.Entidades.Estabelecimento;
-import maitre.API.Entidades.Reserva;
+import maitre.API.Domain.Entidades.Estabelecimento;
+import maitre.API.Domain.Entidades.Reserva;
 import maitre.API.ListaObj.ListaObj;
 import maitre.API.Repository.EstabelecimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

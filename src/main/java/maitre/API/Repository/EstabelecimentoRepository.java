@@ -1,6 +1,6 @@
 package maitre.API.Repository;
 
-import maitre.API.Entidades.Estabelecimento;
+import maitre.API.Domain.Entidades.Estabelecimento;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EstabelecimentoRepository extends JpaRepository<Estabelecimento, Integer> {

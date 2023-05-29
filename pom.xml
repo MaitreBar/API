@@ -45,6 +45,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.starmicronics</groupId>
+            <artifactId>stario</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+		<dependency>
+			<groupId>it.svario.xpathapi</groupId>
+			<artifactId>xpathapi-jaxp</artifactId>
+			<version>0.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>
