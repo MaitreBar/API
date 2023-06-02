@@ -3,6 +3,10 @@ package maitre.API.Controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import maitre.API.Domain.Entidades.Estabelecimento;
 import maitre.API.Domain.Entidades.Reserva;
+import jakarta.validation.Valid;
+import maitre.API.Domain.Entidades.Estabelecimento;
+import maitre.API.Domain.Entidades.Reserva;
+import maitre.API.Domain.Entidades.Usuario;
 import maitre.API.ListaObj.ListaObj;
 import maitre.API.Repository.EstabelecimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +36,28 @@ public class EstabelecimentoController {
             return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(lista);
+    }
+
+    @PostMapping("/{email}/{senha}")
+    public ResponseEntity<Estabelecimento> login(@PathVariable String email, @PathVariable String senha) {
+        List<Estabelecimento> estabelecimentos = estabelecimentoRepository.findAll();
+        for (Estabelecimento e : estabelecimentos){
+            if (e.getEmail().equals(email) && e.getSenha().equals(senha)){
+                System.out.printf("O Estabelecimento %s Logado com sucesso" , e.getNome());
+                return ResponseEntity.status(200).body(e);
+            }
+        }
+        return ResponseEntity.status(404).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Estabelecimento> atualizaUser(@PathVariable Integer id, @RequestBody @Valid Estabelecimento e){
+        e.setId(id);
+        if (this.estabelecimentoRepository.existsById(id)){
+            Estabelecimento estabelecimentoAtualizado = this.estabelecimentoRepository.save(e);
+            return ResponseEntity.status(200).body(estabelecimentoAtualizado);
+        }
+        return ResponseEntity.status(404).build();
     }
 
     @GetMapping("/{id}")
