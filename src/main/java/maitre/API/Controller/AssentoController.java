@@ -35,6 +35,15 @@ public class AssentoController {
         return ResponseEntity.status(404).build();
     }
 
+    @GetMapping("/estabelecimento/{id}")
+    public ResponseEntity<List<Assento>> buscarAssentoPorIdDoEstabelecimento(@PathVariable Integer id){
+        List<Assento> optAssento = assentoRepository.findAssentoByEstabelecimentoId(id);
+        if(optAssento.isEmpty()){
+            return ResponseEntity.status(404).build();
+        }
+        return ResponseEntity.status(200).body(optAssento);
+    }
+
     @PostMapping
     public ResponseEntity<Assento> criarAssento(@RequestBody Assento a){
         Assento assento = assentoRepository.save(a);

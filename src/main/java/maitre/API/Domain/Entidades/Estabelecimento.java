@@ -23,6 +23,11 @@ public class Estabelecimento {
     private String horarioFechamento;
     private String descricao;
     private String email;
+    @OneToMany
+    private List<Assento> assentos;
+    private String tags;
+    @OneToMany
+    private List<Reserva> reservas;
 
     public String getFaixaDePreco() {
         return faixaDePreco;
@@ -32,11 +37,6 @@ public class Estabelecimento {
         this.faixaDePreco = faixaDePreco;
     }
 
-    @OneToMany
-    private List<Assento> assentos;
-    private String tags;
-    @OneToMany
-    private List<Reserva> reservas;
 
     public String getSenha() {
         return senha;
@@ -170,19 +170,19 @@ public class Estabelecimento {
         this.tags = tags;
     }
 
-    public String getAssento() {
-        String stringAssentos = "";
-        for (Assento a : assentos) {
-            stringAssentos += a.toString()+";";
-        }
-        return stringAssentos;
-    }
+//    public String getAssento() {
+//        String stringAssentos = "";
+//        for (Assento a : assentos) {
+//            stringAssentos += a.toString()+";";
+//        }
+//        return stringAssentos;
+//    }
 
-    public String getResesva() {
-        String stringReservas = "";
-        for (Reserva r : reservas) {
-            stringReservas += r.toString()+";";
-        }
-        return stringReservas;
-    }
+//    public String getResesva() {
+//        String stringReservas = "";
+//        for (Reserva r : reservas) {
+//            stringReservas += r.toString()+";";
+//        }
+//        return stringReservas;
+//    }
 }

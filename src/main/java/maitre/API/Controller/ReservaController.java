@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/reservas")
-@CrossOrigin("http://localhost:3000/")
+@CrossOrigin("http://localhost:3000")
 public class ReservaController {
     @Autowired
     private ReservaRepository reservaRepository;
@@ -59,7 +59,7 @@ public class ReservaController {
         return ResponseEntity.status(200).body(listReserva);
     }
 
-    @GetMapping("/busca-por-estabelecimento/{idUsuario}")
+    @GetMapping("/busca-por-estabelecimento/{idEstabelecimento}")
     public ResponseEntity<List<Reserva>> buscarReservaPorEstabelecimentoId(@PathVariable Integer idEstabelecimento){
         List<Reserva> listReserva = reservaRepository.findReservaByEstabelecimentoId(idEstabelecimento);
         if(listReserva.isEmpty()){
