@@ -45,8 +45,24 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody @Valid Usuario user){
-        Usuario usuario = usuarioRepository.save(user);
-        return ResponseEntity.status(201).body(usuario);
+        List<Usuario> usuarioList = usuarioRepository.findAll();
+        for(Usuario u: usuarioList) {
+            if (user.getEmail().equals(u.getEmail())) {
+                return ResponseEntity.status(401).build();
+            } else {
+                if (user.getCpf().equals(u.getCpf())) {
+                    return ResponseEntity.status(401).build();
+                } else {
+                    if (user.getRg().equals(u.getRg())) {
+                        return ResponseEntity.status(401).build();
+                    } else {
+                        Usuario usuario = usuarioRepository.save(user);
+                        return ResponseEntity.status(201).body(usuario);
+                    }
+                }
+            }
+        }
+        return ResponseEntity.status(400).build();
     }
 
     @ApiResponses({
@@ -67,7 +83,7 @@ public class UsuarioController {
         return ResponseEntity.status(404).build();
     }
 
-    @PostMapping("/{email}/{senha}")
+    @GetMapping("/{email}/{senha}")
     public ResponseEntity<Usuario> login(@PathVariable String email, @PathVariable String senha) {
         List<Usuario> usuario = usuarioRepository.findAll();
         for (Usuario u : usuario){

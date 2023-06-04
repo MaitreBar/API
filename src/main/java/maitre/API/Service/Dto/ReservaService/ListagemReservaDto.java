@@ -17,6 +17,7 @@ public class ListagemReservaDto {
     private Estabelecimento estabelecimento;
     private Usuario usuario;
     private List<Assento> assentos;
+    private String feedback;
 
     public ListagemReservaDto(LocalDate dtReserva, LocalTime horaReserva, LocalDateTime dtHoraCheckIn, LocalDateTime dtHoraCheckOut, Estabelecimento estabelecimento, Usuario usuario, List<Assento> assentos) {
         this.dtReserva = dtReserva;
@@ -26,10 +27,19 @@ public class ListagemReservaDto {
         this.estabelecimento = estabelecimento;
         this.usuario = usuario;
         this.assentos = assentos;
+        this.feedback = feedback;
     }
 
     public ListagemReservaDto() {
 
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
     }
 
     public LocalDate getDtReserva() {

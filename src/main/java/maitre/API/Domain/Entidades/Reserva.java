@@ -21,12 +21,21 @@ public class Reserva {
     private LocalDateTime dtHoraCheckIn;
     private Boolean checkOut;
     private LocalDateTime dtHoraCheckOut;
+    private String feedback;
     @ManyToOne
     private Estabelecimento estabelecimento;
     @ManyToOne
     private Usuario usuario;
     @OneToMany
     private List<Assento> assentos;
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
 
     public Integer getId() {
         return id;

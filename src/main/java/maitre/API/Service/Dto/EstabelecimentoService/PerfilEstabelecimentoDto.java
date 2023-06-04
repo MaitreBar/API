@@ -8,9 +8,9 @@ public class PerfilEstabelecimentoDto {
     private String nome;
     private String logradouro;
     private String numero;
-    private int cep;
-    private int cnpj;
-    private String assentos;
+    private String cep;
+    private String cnpj;
+    private List<Assento> assentos;
     private String tags;
     private  String email;
 
@@ -20,13 +20,13 @@ public class PerfilEstabelecimentoDto {
         this.numero = numero;
         this.cep = cep;
         this.cnpj = cnpj;
-        this.assentos = assentos.toString();
+        this.assentos = assentos;
         this.tags = tags;
         this.email = email;
     }
 
     public void setAssentos(List<Assento> assentos) {
-        this.assentos = assentos.toString();
+        this.assentos = assentos;
     }
 
     public String getNome() {
@@ -53,30 +53,26 @@ public class PerfilEstabelecimentoDto {
         this.numero = numero;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
-
-    public String getAssentos() {
+    public List<Assento> getAssentos() {
         return assentos;
     }
 
-    public void setAssentos(String assentos) {
-        this.assentos = assentos;
-    }
     public String getTags() {
         return tags;
     }

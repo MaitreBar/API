@@ -10,8 +10,8 @@ public class EstabelecimentoMapper {
         estabelecimento.setNome(criacaoEstabelecimentoDto.getNome());
         estabelecimento.setLogradouro(criacaoEstabelecimentoDto.getLogradouro());
         estabelecimento.setNumero(criacaoEstabelecimentoDto.getNumero());
-        estabelecimento.setCep(String.valueOf(criacaoEstabelecimentoDto.getCep()));
-        estabelecimento.setCnpj(String.valueOf(criacaoEstabelecimentoDto.getCnpj()));
+        estabelecimento.setCep(criacaoEstabelecimentoDto.getCep());
+        estabelecimento.setCnpj(criacaoEstabelecimentoDto.getCnpj());
         estabelecimento.setTags(criacaoEstabelecimentoDto.getTags());
 
         return estabelecimento;
@@ -24,11 +24,11 @@ public class EstabelecimentoMapper {
         criacaoEstabelecimentoDto.setNome(estabelecimento.getNome());
         criacaoEstabelecimentoDto.setLogradouro(estabelecimento.getLogradouro());
         criacaoEstabelecimentoDto.setNumero(estabelecimento.getNumero());
-        criacaoEstabelecimentoDto.setCep(Integer.parseInt(estabelecimento.getCep()));
-        criacaoEstabelecimentoDto.setCnpj(Integer.parseInt(estabelecimento.getCnpj()));
+        criacaoEstabelecimentoDto.setCep(estabelecimento.getCep());
+        criacaoEstabelecimentoDto.setCnpj(estabelecimento.getCnpj());
         criacaoEstabelecimentoDto.setTags(estabelecimento.getTags());
-        criacaoEstabelecimentoDto.setEmail(estabelecimento.setEmail());
-        criacaoEstabelecimentoDto.setAssento(estabelecimento.getAssento());
+        criacaoEstabelecimentoDto.setEmail(estabelecimento.getEmail());
+        criacaoEstabelecimentoDto.setAssentos(estabelecimento.getAssentos());
 
         return criacaoEstabelecimentoDto;
 
@@ -40,12 +40,11 @@ public class EstabelecimentoMapper {
         estabelecimento.setNome(perfilEstabelecimentoDto.getNome());
         estabelecimento.setLogradouro(perfilEstabelecimentoDto.getLogradouro());
         estabelecimento.setNumero(perfilEstabelecimentoDto.getNumero());
-        estabelecimento.setNumero(perfilEstabelecimentoDto.getNumero());
-        estabelecimento.setCep(String.valueOf(perfilEstabelecimentoDto.getCep()));
-        estabelecimento.setCnpj(String.valueOf(perfilEstabelecimentoDto.getCnpj()));
+        estabelecimento.setCep(perfilEstabelecimentoDto.getCep());
+        estabelecimento.setCnpj(perfilEstabelecimentoDto.getCnpj());
         estabelecimento.setTags(perfilEstabelecimentoDto.getTags());
         estabelecimento.setEmail(perfilEstabelecimentoDto.getEmail());
-        estabelecimento.setAssentos(perfilEstabelecimentoDto.setAssentos());
+        estabelecimento.setAssentos(perfilEstabelecimentoDto.getAssentos());
 
         return estabelecimento;
     }
@@ -56,11 +55,11 @@ public class EstabelecimentoMapper {
         perfilEstabelecimentoDto.setNome(estabelecimento.getNome());
         perfilEstabelecimentoDto.setLogradouro(estabelecimento.getLogradouro());
         perfilEstabelecimentoDto.setNumero(estabelecimento.getNumero());
-        perfilEstabelecimentoDto.setCep(Integer.parseInt(estabelecimento.getCep()));
-        perfilEstabelecimentoDto.setCnpj(Integer.parseInt(estabelecimento.getCnpj()));
+        perfilEstabelecimentoDto.setCep(estabelecimento.getCep());
+        perfilEstabelecimentoDto.setCnpj(estabelecimento.getCnpj());
         perfilEstabelecimentoDto.setTags(estabelecimento.getTags());
         perfilEstabelecimentoDto.setEmail(estabelecimento.getEmail());
-        perfilEstabelecimentoDto.setAssentos(estabelecimento.getAssento());
+        perfilEstabelecimentoDto.setAssentos(estabelecimento.getAssentos());
 
         return perfilEstabelecimentoDto;
     }

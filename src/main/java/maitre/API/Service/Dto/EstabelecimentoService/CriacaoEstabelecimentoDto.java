@@ -1,15 +1,19 @@
 package maitre.API.Service.Dto.EstabelecimentoService;
 
+import maitre.API.Domain.Entidades.Assento;
+
+import java.util.List;
+
 public class CriacaoEstabelecimentoDto {
 
     private  String nome;
     private String logradouro;
     private String numero;
-    private int cep;
-    private int cnpj;
+    private String cep;
+    private String cnpj;
     private String tags;
     private String email;
-    private String assento;
+    private List<Assento> assentos;
 
     public CriacaoEstabelecimentoDto() {
 
@@ -39,19 +43,19 @@ public class CriacaoEstabelecimentoDto {
         this.numero = numero;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -63,11 +67,19 @@ public class CriacaoEstabelecimentoDto {
         this.tags = tags;
     }
 
-    public void setAssento(String assento) {
-        this.assento = assento;
+    public String getEmail() {
+        return email;
     }
 
-    public String getAssento() {
-        return assento;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Assento> getAssentos() {
+        return assentos;
+    }
+
+    public void setAssentos(List<Assento> assentos) {
+        this.assentos = assentos;
     }
 }
