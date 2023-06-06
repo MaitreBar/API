@@ -1,6 +1,6 @@
-package maitre.API.Service.Dto.UsuarioService;
+package maitre.API.Service.UsuarioService.dto;
 
-import maitre.API.Domain.Entidades.Usuario;
+import maitre.API.Domain.Usuario;
 
 public class UsuarioMapper {
 

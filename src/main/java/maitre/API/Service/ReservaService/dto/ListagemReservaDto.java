@@ -1,19 +1,17 @@
-package maitre.API.Service.Dto.ReservaService;
+package maitre.API.Service.ReservaService.dto;
 
-import maitre.API.Domain.Entidades.Assento;
-import maitre.API.Domain.Entidades.Estabelecimento;
-import maitre.API.Domain.Entidades.Usuario;
+import maitre.API.Domain.Assento;
+import maitre.API.Domain.Estabelecimento;
+import maitre.API.Domain.Usuario;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-public class CriacaoReservaDto {
-
-
+public class ListagemReservaDto {
     private LocalDate dtReserva;
-    private LocalTime horaReserva;
+    private LocalTime HoraReserva;
     private LocalDateTime dtHoraCheckIn;
     private LocalDateTime dtHoraCheckOut;
     private Estabelecimento estabelecimento;
@@ -21,9 +19,9 @@ public class CriacaoReservaDto {
     private List<Assento> assentos;
     private String feedback;
 
-    public CriacaoReservaDto(LocalDate dtReserva, LocalTime horaReserva, LocalDateTime dtHoraCheckIn, LocalDateTime dtHoraCheckOut, Estabelecimento estabelecimento, Usuario usuario, List<Assento> assentos, String feedback) {
+    public ListagemReservaDto(LocalDate dtReserva, LocalTime horaReserva, LocalDateTime dtHoraCheckIn, LocalDateTime dtHoraCheckOut, Estabelecimento estabelecimento, Usuario usuario, List<Assento> assentos) {
         this.dtReserva = dtReserva;
-        this.horaReserva = horaReserva;
+        HoraReserva = horaReserva;
         this.dtHoraCheckIn = dtHoraCheckIn;
         this.dtHoraCheckOut = dtHoraCheckOut;
         this.estabelecimento = estabelecimento;
@@ -32,7 +30,7 @@ public class CriacaoReservaDto {
         this.feedback = feedback;
     }
 
-    public CriacaoReservaDto() {
+    public ListagemReservaDto() {
 
     }
 
@@ -53,11 +51,11 @@ public class CriacaoReservaDto {
     }
 
     public LocalTime getHoraReserva() {
-        return horaReserva;
+        return HoraReserva;
     }
 
     public void setHoraReserva(LocalTime horaReserva) {
-        this.horaReserva = horaReserva;
+        HoraReserva = horaReserva;
     }
 
     public LocalDateTime getDtHoraCheckIn() {

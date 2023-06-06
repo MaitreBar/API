@@ -1,15 +1,8 @@
-package maitre.API.Domain.Entidades;
-
-import jakarta.persistence.*;
+package maitre.API.Service.UsuarioService.dto;
 
 import java.time.LocalDate;
-import java.util.List;
 
-@Entity
-public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class CriacaoUsuarioDto {
     private String nome;
     private String email;
     private String cpf;
@@ -18,39 +11,20 @@ public class Usuario {
     private String rg;
     private String senha;
     private String tags;
-    @OneToMany
-    private List<Reserva> reservas;
 
-    public List<Reserva> getReservas() {
-        return reservas;
+    public CriacaoUsuarioDto() {
+
     }
 
-    public void setReservas(List<Reserva> reservas) {
-        this.reservas = reservas;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
+    public CriacaoUsuarioDto(String nome, String email, String cpf, LocalDate dtNasc, String celular, String rg, String senha, String tags) {
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.dtNasc = dtNasc;
         this.celular = celular;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
+        this.rg = rg;
+        this.senha = senha;
         this.tags = tags;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -85,6 +59,14 @@ public class Usuario {
         this.dtNasc = dtNasc;
     }
 
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
     public String getRg() {
         return rg;
     }
@@ -99,5 +81,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }

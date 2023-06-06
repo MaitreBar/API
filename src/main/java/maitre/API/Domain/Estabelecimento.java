@@ -1,4 +1,4 @@
-package maitre.API.Domain.Entidades;
+package maitre.API.Domain;
 
 import jakarta.persistence.*;
 

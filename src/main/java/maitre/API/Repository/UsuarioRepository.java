@@ -1,6 +1,6 @@
 package maitre.API.Repository;
 
-import maitre.API.Domain.Entidades.Usuario;
+import maitre.API.Domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

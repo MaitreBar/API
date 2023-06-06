@@ -1,6 +1,6 @@
-package maitre.API.Service.Dto.EstabelecimentoService;
+package maitre.API.Service.EstabelecimentoService.dto;
 
-import maitre.API.Domain.Entidades.Estabelecimento;
+import maitre.API.Domain.Estabelecimento;
 
 public class EstabelecimentoMapper {
 

@@ -1,6 +1,6 @@
-package maitre.API.Service.Dto.ReservaService;
+package maitre.API.Service.ReservaService.dto;
 
-import maitre.API.Domain.Entidades.Reserva;
+import maitre.API.Domain.Reserva;
 
 public class ReservaMapper {
 

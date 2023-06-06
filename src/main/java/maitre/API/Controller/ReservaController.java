@@ -3,9 +3,9 @@ package maitre.API.Controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import maitre.API.Domain.Entidades.Estabelecimento;
-import maitre.API.Domain.Entidades.Reserva;
-import maitre.API.Domain.Entidades.Usuario;
+import maitre.API.Domain.Estabelecimento;
+import maitre.API.Domain.Reserva;
+import maitre.API.Domain.Usuario;
 import maitre.API.Repository.AssentoRepository;
 import maitre.API.Repository.EstabelecimentoRepository;
 import maitre.API.Repository.ReservaRepository;
