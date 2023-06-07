@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import maitre.API.Domain.Usuario;
-import maitre.API.Repository.UsuarioRepository;
+import maitre.API.Service.UsuarioService.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,46 +23,31 @@ import java.util.Optional;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     @GetMapping
     public ResponseEntity<List<Usuario>> listaUsuarios(){
-        List<Usuario> usuarios = usuarioRepository.findAll();
-        if(usuarios.isEmpty()) {
-            return ResponseEntity.status(204).build();
-        }
+        List<Usuario> usuarios = usuarioService.listaUsuarios();
         return ResponseEntity.status(200).body(usuarios);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> buscaPorId(@PathVariable Integer id){
-        Optional<Usuario> optUsuario = usuarioRepository.findById(id);
-        if (optUsuario.isPresent()){
-            return ResponseEntity.status(200).body(optUsuario.get());
-        }
-        return ResponseEntity.status(404).build();
+        Usuario usuario = usuarioService.buscaPorId(id);
+        return ResponseEntity.status(200).body(usuario);
     }
 
+
+    @ApiResponses({
+            @ApiResponse(responseCode = "401", description = "Email e/ou CPF e/ou RG já existentes em nossa base de dados"),
+            @ApiResponse(responseCode = "400", description = "Email e/ou CPF e/ou RG já existentes em nossa base de dados"),
+            @ApiResponse(responseCode = "201", description = "Usuários cadastrado"),
+            @ApiResponse(responseCode = "418", description = "EU SOU UMA XÍCARA DE CHÁ")
+    })
     @PostMapping
     public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody @Valid Usuario user){
-        List<Usuario> usuarioList = usuarioRepository.findAll();
-        for(Usuario u: usuarioList) {
-            if (user.getEmail().equals(u.getEmail())) {
-                return ResponseEntity.status(401).build();
-            } else {
-                if (user.getCpf().equals(u.getCpf())) {
-                    return ResponseEntity.status(401).build();
-                } else {
-                    if (user.getRg().equals(u.getRg())) {
-                        return ResponseEntity.status(401).build();
-                    } else {
-                        Usuario usuario = usuarioRepository.save(user);
-                        return ResponseEntity.status(201).body(usuario);
-                    }
-                }
-            }
-        }
-        return ResponseEntity.status(400).build();
+        Usuario usuario = usuarioService.cadastrarUsuario(user);
+        return ResponseEntity.status(201).body(usuario);
     }
 
     @ApiResponses({
@@ -76,37 +61,20 @@ public class UsuarioController {
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizaUser(@PathVariable Integer id, @RequestBody @Valid Usuario usuario){
         usuario.setId(id);
-        if (this.usuarioRepository.existsById(id)){
-            Usuario usuarioAtualizado = this.usuarioRepository.save(usuario);
+            Usuario usuarioAtualizado = usuarioService.atualizaUser(id, usuario);
             return ResponseEntity.status(200).body(usuarioAtualizado);
-        }
-        return ResponseEntity.status(404).build();
     }
 
     @GetMapping("/{email}/{senha}")
     public ResponseEntity<Usuario> login(@PathVariable String email, @PathVariable String senha) {
-        List<Usuario> usuario = usuarioRepository.findAll();
-        for (Usuario u : usuario){
-            if (u.getEmail().equals(email) && u.getSenha().equals(senha)){
-                System.out.printf("O usuario %s Logado com sucesso" , u.getNome());
-                return ResponseEntity.status(200).body(u);
-            }
-        }
-        return ResponseEntity.status(404).build();
-    }
-
-    @DeleteMapping
-    public ResponseEntity<Void> logOff(){
-        return ResponseEntity.status(200).build();
+        Usuario usuario = usuarioService.login(email, senha);
+        return ResponseEntity.status(200).body(usuario);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
-        if (this.usuarioRepository.existsById(id)){
-            this.usuarioRepository.deleteById(id);
+            usuarioService.delete(id);
             return ResponseEntity.status(200).build();
-        }
-        return ResponseEntity.status(404).build();
     }
 
 }

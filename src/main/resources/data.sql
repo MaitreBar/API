@@ -15,6 +15,18 @@ INSERT INTO assento
 (disponivel)
 VALUES (true);
 
+INSERT INTO assento
+(disponivel)
+VALUES (true);
+
+INSERT INTO assento
+(disponivel)
+VALUES (true);
+
+INSERT INTO assento
+(disponivel)
+VALUES (true);
+
 INSERT INTO usuario
 (nome, email, cpf, dt_nasc, rg, senha, tags)
 VALUES
@@ -43,6 +55,15 @@ VALUES (1,2);
 
 INSERT INTO estabelecimento_assentos
 VALUES (1,3);
+
+INSERT INTO estabelecimento_assentos
+VALUES (1,4);
+
+INSERT INTO estabelecimento_assentos
+VALUES (1,5);
+
+INSERT INTO estabelecimento_assentos
+VALUES (1,6);
 
 INSERT INTO estabelecimento_reservas
 VALUES (1,1);

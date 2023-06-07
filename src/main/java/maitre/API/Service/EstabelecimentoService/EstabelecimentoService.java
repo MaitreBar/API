@@ -2,14 +2,11 @@ package maitre.API.Service.EstabelecimentoService;
 
 import maitre.API.Domain.Estabelecimento;
 import maitre.API.Domain.Reserva;
-import jakarta.validation.Valid;
 import maitre.API.ListaObj.ListaObj;
 import maitre.API.Repository.EstabelecimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.FileNotFoundException;
