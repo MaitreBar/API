@@ -6,23 +6,23 @@ import java.util.List;
 
 public class PerfilEstabelecimentoDto {
     private String nome;
+    private String senha;
     private String logradouro;
     private String numero;
+    private String complemento;
     private String cep;
+    private String diasDaSemana;
+    private String faixaDePreco;
     private String cnpj;
-    private List<Assento> assentos;
+    private String horarioAbertura;
+    private String horarioFechamento;
+    private String descricao;
+    private String email;
     private String tags;
-    private  String email;
+    private List<Assento> assentos;
 
-    public PerfilEstabelecimentoDto() {
-        this.nome = nome;
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.cep = cep;
-        this.cnpj = cnpj;
-        this.assentos = assentos;
-        this.tags = tags;
-        this.email = email;
+    public List<Assento> getAssentos() {
+        return assentos;
     }
 
     public void setAssentos(List<Assento> assentos) {
@@ -35,6 +35,14 @@ public class PerfilEstabelecimentoDto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getLogradouro() {
@@ -53,12 +61,36 @@ public class PerfilEstabelecimentoDto {
         this.numero = numero;
     }
 
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
     public String getCep() {
         return cep;
     }
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String getDiasDaSemana() {
+        return diasDaSemana;
+    }
+
+    public void setDiasDaSemana(String diasDaSemana) {
+        this.diasDaSemana = diasDaSemana;
+    }
+
+    public String getFaixaDePreco() {
+        return faixaDePreco;
+    }
+
+    public void setFaixaDePreco(String faixaDePreco) {
+        this.faixaDePreco = faixaDePreco;
     }
 
     public String getCnpj() {
@@ -69,16 +101,28 @@ public class PerfilEstabelecimentoDto {
         this.cnpj = cnpj;
     }
 
-    public List<Assento> getAssentos() {
-        return assentos;
+    public String getHorarioAbertura() {
+        return horarioAbertura;
     }
 
-    public String getTags() {
-        return tags;
+    public void setHorarioAbertura(String horarioAbertura) {
+        this.horarioAbertura = horarioAbertura;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
+    public String getHorarioFechamento() {
+        return horarioFechamento;
+    }
+
+    public void setHorarioFechamento(String horarioFechamento) {
+        this.horarioFechamento = horarioFechamento;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getEmail() {
@@ -89,4 +133,11 @@ public class PerfilEstabelecimentoDto {
         this.email = email;
     }
 
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
 }

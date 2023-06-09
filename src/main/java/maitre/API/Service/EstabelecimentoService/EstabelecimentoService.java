@@ -4,6 +4,8 @@ import maitre.API.Domain.Estabelecimento;
 import maitre.API.Domain.Reserva;
 import maitre.API.ListaObj.ListaObj;
 import maitre.API.Repository.EstabelecimentoRepository;
+import maitre.API.Service.EstabelecimentoService.dto.AtualizacaoEstabelecimentoDTO;
+import maitre.API.Service.EstabelecimentoService.dto.EstabelecimentoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -40,6 +42,8 @@ public class EstabelecimentoService {
     public Estabelecimento atualizaUser(Integer id, Estabelecimento e) {
         e.setId(id);
         if (this.estabelecimentoRepository.existsById(id)) {
+            AtualizacaoEstabelecimentoDTO estabelecimentoAtualizadoDto = EstabelecimentoMapper.MapAtualizacaoDTO(e);
+            Estabelecimento estabelecimento = EstabelecimentoMapper.of(estabelecimentoAtualizadoDto);
             Estabelecimento estabelecimentoAtualizado = this.estabelecimentoRepository.save(e);
             return estabelecimentoAtualizado;
         }
