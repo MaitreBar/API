@@ -27,7 +27,7 @@ public class EstabelecimentoController {
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(lista);
     }
 
-    @PostMapping("/{email}/{senha}")
+    @GetMapping("/{email}/{senha}")
     public ResponseEntity<Estabelecimento> login(@PathVariable String email, @PathVariable String senha) {
         Estabelecimento estabelecimento = estabelecimentoService.login(email, senha);
         return ResponseEntity.ok(estabelecimento);
