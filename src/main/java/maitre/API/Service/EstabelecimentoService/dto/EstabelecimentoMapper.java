@@ -73,26 +73,26 @@ public class EstabelecimentoMapper {
         return estabelecimento;
     }
 
-    public static PerfilEstabelecimentoDto mapCriacaoDto(Estabelecimento estabelecimento) {
-        PerfilEstabelecimentoDto perfilEstabelecimentoDto = new PerfilEstabelecimentoDto();
+    public static CriacaoEstabelecimentoDto mapCriacaoDto(Estabelecimento estabelecimento) {
+        CriacaoEstabelecimentoDto criacaoEstabelecimentoDTO = new CriacaoEstabelecimentoDto();
 
-        perfilEstabelecimentoDto.setNome(estabelecimento.getNome());
-        perfilEstabelecimentoDto.setLogradouro(estabelecimento.getLogradouro());
-        perfilEstabelecimentoDto.setNumero(estabelecimento.getNumero());
-        perfilEstabelecimentoDto.setCep(estabelecimento.getCep());
-        perfilEstabelecimentoDto.setCnpj(estabelecimento.getCnpj());
-        perfilEstabelecimentoDto.setTags(estabelecimento.getTags());
-        perfilEstabelecimentoDto.setEmail(estabelecimento.getEmail());
-        perfilEstabelecimentoDto.setComplemento(estabelecimento.getComplemento());
-        perfilEstabelecimentoDto.setSenha(estabelecimento.getSenha());
-        perfilEstabelecimentoDto.setDiasDaSemana(estabelecimento.getDiasDaSemana());
-        perfilEstabelecimentoDto.setFaixaDePreco(estabelecimento.getFaixaDePreco());
-        perfilEstabelecimentoDto.setHorarioAbertura(estabelecimento.getHorarioAbertura());
-        perfilEstabelecimentoDto.setHorarioFechamento(estabelecimento.getHorarioFechamento());
-        perfilEstabelecimentoDto.setDescricao(estabelecimento.getDescricao());
-        perfilEstabelecimentoDto.setAssentos(estabelecimento.getAssentos());
+        criacaoEstabelecimentoDTO.setNome(estabelecimento.getNome());
+        criacaoEstabelecimentoDTO.setLogradouro(estabelecimento.getLogradouro());
+        criacaoEstabelecimentoDTO.setNumero(estabelecimento.getNumero());
+        criacaoEstabelecimentoDTO.setCep(estabelecimento.getCep());
+        criacaoEstabelecimentoDTO.setCnpj(estabelecimento.getCnpj());
+        criacaoEstabelecimentoDTO.setTags(estabelecimento.getTags());
+        criacaoEstabelecimentoDTO.setEmail(estabelecimento.getEmail());
+        criacaoEstabelecimentoDTO.setComplemento(estabelecimento.getComplemento());
+        criacaoEstabelecimentoDTO.setSenha(estabelecimento.getSenha());
+        criacaoEstabelecimentoDTO.setDiasDaSemana(estabelecimento.getDiasDaSemana());
+        criacaoEstabelecimentoDTO.setFaixaDePreco(estabelecimento.getFaixaDePreco());
+        criacaoEstabelecimentoDTO.setHorarioAbertura(estabelecimento.getHorarioAbertura());
+        criacaoEstabelecimentoDTO.setHorarioFechamento(estabelecimento.getHorarioFechamento());
+        criacaoEstabelecimentoDTO.setDescricao(estabelecimento.getDescricao());
+        criacaoEstabelecimentoDTO.setAssentos(estabelecimento.getAssentos());
 
-        return perfilEstabelecimentoDto;
+        return criacaoEstabelecimentoDTO;
     }
 
     public static Estabelecimento of(AtualizacaoEstabelecimentoDTO atualizacaoEstabelecimentoDTO) {

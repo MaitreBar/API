@@ -5,6 +5,7 @@ import maitre.API.Domain.Reserva;
 import maitre.API.ListaObj.ListaObj;
 import maitre.API.Repository.EstabelecimentoRepository;
 import maitre.API.Service.EstabelecimentoService.dto.AtualizacaoEstabelecimentoDTO;
+import maitre.API.Service.EstabelecimentoService.dto.CriacaoEstabelecimentoDto;
 import maitre.API.Service.EstabelecimentoService.dto.EstabelecimentoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,8 @@ import java.util.*;
 public class EstabelecimentoService {
     @Autowired
     private EstabelecimentoRepository estabelecimentoRepository;
+
+    private EstabelecimentoMapper mapper = new EstabelecimentoMapper();
 
     public List<Estabelecimento> listar() {
         List<Estabelecimento> lista = estabelecimentoRepository.findAll();
@@ -44,7 +47,7 @@ public class EstabelecimentoService {
         if (this.estabelecimentoRepository.existsById(id)) {
             AtualizacaoEstabelecimentoDTO estabelecimentoAtualizadoDto = EstabelecimentoMapper.MapAtualizacaoDTO(e);
             Estabelecimento estabelecimento = EstabelecimentoMapper.of(estabelecimentoAtualizadoDto);
-            Estabelecimento estabelecimentoAtualizado = this.estabelecimentoRepository.save(e);
+            Estabelecimento estabelecimentoAtualizado = this.estabelecimentoRepository.save(estabelecimento);
             return estabelecimentoAtualizado;
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -59,8 +62,10 @@ public class EstabelecimentoService {
     }
 
     public Estabelecimento cadastrar(Estabelecimento e) {
-        Estabelecimento estabelecimento = estabelecimentoRepository.save(e);
-        return estabelecimento;
+        CriacaoEstabelecimentoDto criacaoEstabelecimentoDto = EstabelecimentoMapper.mapCriacaoDto(e);
+        Estabelecimento estabelecimento = EstabelecimentoMapper.of(criacaoEstabelecimentoDto);
+        Estabelecimento estabelecimentoCriado = estabelecimentoRepository.save(estabelecimento);
+        return estabelecimentoCriado;
     }
 
     public Void adiciona(Estabelecimento estabelecimento) {
