@@ -45,7 +45,7 @@ VALUES
 INSERT INTO reserva
 (dt_reserva, hora_reserva, check_in, dt_hora_check_in, check_out, dt_hora_check_out)
 VALUES
-    ('2023-11-10', '17:30:00', false, null, false, null);
+    ('2023-10-10', '16:30:00', false, null, false, null);
 
 INSERT INTO estabelecimento_assentos
 VALUES (1,1);

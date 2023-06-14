@@ -83,5 +83,17 @@ public class UsuarioService {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
+    public Integer buscarPosicaoUsuarioFilaPorId(Integer id) {
+        List<Usuario> usuarios = usuarioRepository.findAllOrderByOrdemFila(id);
+
+//        for (int i = 0; i < usuarios.size(); i++) {
+//            if (usuarios.get(i).getId() == id)
+//                return i + 1;
+//        }
+
+        return usuarios.indexOf(usuarios.stream().filter(usuario -> usuario.getId() == id))+1;
+
+}
+
 }
 
