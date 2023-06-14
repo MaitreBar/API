@@ -1,6 +1,7 @@
 package maitre.API.Repository;
 
 import maitre.API.Domain.Reserva;
+import maitre.API.Domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
