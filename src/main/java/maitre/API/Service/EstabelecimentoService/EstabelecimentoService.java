@@ -40,7 +40,7 @@ public class EstabelecimentoService {
     }
 
     public Estabelecimento atualizaUser(Integer id, Estabelecimento e) {
-        e.setId(id);
+        e.setIdEstabelecimento(id);
         if (this.estabelecimentoRepository.existsById(id)) {
             AtualizacaoEstabelecimentoDTO estabelecimentoAtualizadoDto = EstabelecimentoMapper.MapAtualizacaoDTO(e);
             Estabelecimento estabelecimento = EstabelecimentoMapper.of(estabelecimentoAtualizadoDto);
@@ -88,7 +88,7 @@ public class EstabelecimentoService {
     }
 
     public Void checkIn(Integer id, Integer idReserva) {
-        Estabelecimento estabelecimento = estabelecimentoRepository.findEstabelecimentoById(id);
+        Estabelecimento estabelecimento = estabelecimentoRepository.findEstabelecimentoByIdEstabelecimento(id);
         if (!estabelecimento.getReservas().get(idReserva).getCheckIn()) {
             estabelecimento.getReservas().get(idReserva).setDtHoraCheckOut(LocalDateTime.now());
             estabelecimento.getReservas().get(idReserva).setCheckIn(true);
@@ -98,7 +98,7 @@ public class EstabelecimentoService {
     }
 
     public Void checkOut(Integer id, Integer idReserva) {
-        Estabelecimento estabelecimento = estabelecimentoRepository.findEstabelecimentoById(id);
+        Estabelecimento estabelecimento = estabelecimentoRepository.findEstabelecimentoByIdEstabelecimento(id);
         if (estabelecimento.getReservas().get(idReserva).getCheckIn()) {
             estabelecimento.getReservas().get(idReserva).setDtHoraCheckOut(LocalDateTime.now());
             estabelecimento.getReservas().get(idReserva).setCheckOut(true);
@@ -134,7 +134,7 @@ public class EstabelecimentoService {
         try {
             for (int i = 0; i < lista.getTamanho(); i++) {
                 Estabelecimento estabelecimento = lista.getElemento(i);
-                saida.format("%d;%s;%s;%s;%S;%S;%S;%S;\n", estabelecimento.getId(), estabelecimento.getNome(), estabelecimento.getLogradouro(), estabelecimento.getNumero(), estabelecimento.getCep(), estabelecimento.getCnpj(), estabelecimento.getTags(), estabelecimento.getReservas());
+                saida.format("%d;%s;%s;%s;%S;%S;%S;%S;\n", estabelecimento.getIdEstabelecimento(), estabelecimento.getNome(), estabelecimento.getLogradouro(), estabelecimento.getNumero(), estabelecimento.getCep(), estabelecimento.getCnpj(), estabelecimento.getTags(), estabelecimento.getReservas());
             }
         } catch (FormatterClosedException erro) {
             System.out.println("Erro ao gravar o arquivo");

@@ -9,7 +9,7 @@ public class Estabelecimento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idEstabelecimento;
     private String nome;
     private String senha;
     private String logradouro;
@@ -19,13 +19,16 @@ public class Estabelecimento {
     private String diasDaSemana;
     private String faixaDePreco;
     private String cnpj;
+    private String telefoneContato;
     private String horarioAbertura;
     private String horarioFechamento;
     private String descricao;
     private String email;
+    @JoinColumn(name="fkEstabelecimento")
     @OneToMany
     private List<Assento> assentos;
     private String tags;
+    @JoinColumn(name="fkEstabelecimento")
     @OneToMany
     private List<Reserva> reservas;
 
@@ -37,6 +40,13 @@ public class Estabelecimento {
         this.faixaDePreco = faixaDePreco;
     }
 
+    public String getTelefoneContato() {
+        return telefoneContato;
+    }
+
+    public void setTelefoneContato(String telefoneContato) {
+        this.telefoneContato = telefoneContato;
+    }
 
     public String getSenha() {
         return senha;
@@ -121,14 +131,13 @@ public class Estabelecimento {
         this.reservas.add(reservas.size() - 1, reserva);
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdEstabelecimento() {
+        return idEstabelecimento;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdEstabelecimento(Integer idEstabelecimento) {
+        this.idEstabelecimento = idEstabelecimento;
     }
-
 
     public String getNome() {
         return nome;

@@ -9,17 +9,17 @@ public class Mesa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idMesa;
     private Boolean disponivel;
     @OneToMany
     private List<Assento> assentos;
 
     public Integer getId() {
-        return id;
+        return idMesa;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idMesa) {
+        this.idMesa = idMesa;
     }
 
     public Boolean getDisponivel() {

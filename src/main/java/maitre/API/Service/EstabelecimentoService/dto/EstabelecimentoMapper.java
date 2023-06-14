@@ -22,6 +22,7 @@ public class EstabelecimentoMapper {
         estabelecimento.setHorarioFechamento(criacaoEstabelecimentoDto.getHorarioFechamento());
         estabelecimento.setDescricao(criacaoEstabelecimentoDto.getDescricao());
         estabelecimento.setAssentos(criacaoEstabelecimentoDto.getAssentos());
+        estabelecimento.setTelefoneContato(criacaoEstabelecimentoDto.getTelefoneContato());
 
         return estabelecimento;
 
@@ -45,6 +46,7 @@ public class EstabelecimentoMapper {
         criacaoEstabelecimentoDto.setHorarioFechamento(estabelecimento.getHorarioFechamento());
         criacaoEstabelecimentoDto.setDescricao(estabelecimento.getDescricao());
         criacaoEstabelecimentoDto.setAssentos(estabelecimento.getAssentos());
+        criacaoEstabelecimentoDto.setTelefoneContato(estabelecimento.getTelefoneContato());
 
         return criacaoEstabelecimentoDto;
 

@@ -16,10 +16,19 @@ public class CriacaoEstabelecimentoDto {
     private String cnpj;
     private String horarioAbertura;
     private String horarioFechamento;
+    private String telefoneContato;
     private String descricao;
     private String email;
     private String tags;
     private List<Assento> assentos;
+
+    public String getTelefoneContato() {
+        return telefoneContato;
+    }
+
+    public void setTelefoneContato(String telefoneContato) {
+        this.telefoneContato = telefoneContato;
+    }
 
     public List<Assento> getAssentos() {
         return assentos;

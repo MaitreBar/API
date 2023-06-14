@@ -13,7 +13,7 @@ public class Reserva {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idReserva;
     @FutureOrPresent
     private LocalDate dtReserva;
     private LocalTime horaReserva;
@@ -22,8 +22,10 @@ public class Reserva {
     private Boolean checkOut;
     private LocalDateTime dtHoraCheckOut;
     private String feedback;
+    @JoinColumn(name="fkEstabelecimento")
     @ManyToOne
     private Estabelecimento estabelecimento;
+    @JoinColumn(name="fkUsuario")
     @ManyToOne
     private Usuario usuario;
     @OneToMany
@@ -38,11 +40,11 @@ public class Reserva {
     }
 
     public Integer getId() {
-        return id;
+        return idReserva;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idReserva) {
+        this.idReserva = idReserva;
     }
 
     public LocalDate getDtReserva() {
@@ -107,19 +109,6 @@ public class Reserva {
 
     public void setAssentos(List<Assento> assentos) {
         this.assentos = assentos;
-    }
-
-    @Override
-    public String toString() {
-        return "Reserva{" +
-                "id=" + id +
-                ", dtReserva=" + dtReserva +
-                ", horaReserva=" + horaReserva +
-                ", checkIn=" + checkIn +
-                ", dtHoraCheckIn=" + dtHoraCheckIn +
-                ", checkOut=" + checkOut +
-                ", dtHoraCheckOut=" + dtHoraCheckOut +
-                '}';
     }
 
     public void setEstabelecimento(Estabelecimento estabelecimento) {

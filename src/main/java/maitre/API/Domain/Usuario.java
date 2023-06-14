@@ -9,7 +9,7 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idUsuario;
     private String nome;
     private String email;
     private String cpf;
@@ -18,6 +18,7 @@ public class Usuario {
     private String rg;
     private String senha;
     private String tags;
+    @JoinColumn(name="fkUsuario")
     @OneToMany
     private List<Reserva> reservas;
 
@@ -46,11 +47,11 @@ public class Usuario {
     }
 
     public Integer getId() {
-        return id;
+        return idUsuario;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNome() {

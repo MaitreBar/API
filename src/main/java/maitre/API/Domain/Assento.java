@@ -1,24 +1,28 @@
 package maitre.API.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import maitre.API.Service.EstabelecimentoService.EstabelecimentoService;
 
 @Entity
 public class Assento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idAssento;
     public Boolean disponivel;
+    @ManyToOne
+    @JoinColumn(name="fkReserva")
+    public Reserva reserva;
+    @ManyToOne
+    @JoinColumn(name="fkEstabelecimento")
+    public Estabelecimento estabelecimento;
 
     public Integer getId() {
-        return id;
+        return idAssento;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idAssento) {
+        this.idAssento = idAssento;
     }
 
     public Boolean getDisponivel() {
@@ -32,7 +36,7 @@ public class Assento {
     @Override
     public String toString() {
         return "Assento{" +
-                "id=" + id +
+                "idAssento=" + idAssento +
                 ", disponivel=" + disponivel +
                 '}';
     }
