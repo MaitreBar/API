@@ -22,7 +22,7 @@ public class Usuario {
     private String senha;
     private String tags;
     @JoinColumn(name="fkUsuario")
-    @JsonManagedReference
+    @JsonManagedReference(value="reservas-usuario")
     @OneToMany
     private List<Reserva> reservas;
 

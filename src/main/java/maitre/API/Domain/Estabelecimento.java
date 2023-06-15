@@ -25,12 +25,12 @@ public class Estabelecimento {
     private String descricao;
     private String email;
     @JoinColumn(name="fkEstabelecimento")
-    @JsonManagedReference
+    @JsonManagedReference(value="assentos-estabelecimento")
     @OneToMany
     private List<Assento> assentos;
     private String tags;
     @JoinColumn(name="fkEstabelecimento")
-    @JsonManagedReference
+    @JsonManagedReference(value="reservas-estabelecimento")
     @OneToMany
     private List<Reserva> reservas;
 

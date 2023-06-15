@@ -13,11 +13,11 @@ public class Assento {
     private Integer idAssento;
     public Boolean disponivel;
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value="assentos-reserva")
     @JoinColumn(name="fkReserva")
     public Reserva reserva;
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value="assentos-estabelecimento")
     @JoinColumn(name="fkEstabelecimento")
     public Estabelecimento estabelecimento;
 

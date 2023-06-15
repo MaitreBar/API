@@ -13,7 +13,7 @@ public class Mesa {
     private Integer idMesa;
     private Boolean disponivel;
     @JoinColumn(name="fkMesa")
-    @JsonManagedReference
+    @JsonManagedReference(value="assentos-mesa")
     @OneToMany
     private List<Assento> assentos;
 

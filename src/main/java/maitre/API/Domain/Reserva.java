@@ -27,15 +27,15 @@ public class Reserva {
     private LocalDateTime dtHoraCheckOut;
     private String feedback;
     @JoinColumn(name="fkEstabelecimento")
-    @JsonBackReference
+    @JsonBackReference(value="reservas-estabelecimento")
     @ManyToOne
     private Estabelecimento estabelecimento;
     @JoinColumn(name="fkUsuario")
-    @JsonBackReference
+    @JsonBackReference(value="reservas-usuario")
     @ManyToOne
     private Usuario usuario;
     @JoinColumn(name="fkReserva")
-    @JsonManagedReference
+    @JsonManagedReference(value="assentos-reserva")
     @OneToMany
     private List<Assento> assentos;
 
