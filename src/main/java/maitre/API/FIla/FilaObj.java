@@ -1,11 +1,21 @@
 package maitre.API.FIla;
 
-public class FilaObj {
+import java.util.ArrayList;
+import java.util.List;
+
+public class FilaObj <T> {
     private int tamanho;
-    private String[] fila;
+    private T[] fila;
+
+    public T get(int indice) {
+        if (indice < 0 || indice >= tamanho) {
+            throw new IndexOutOfBoundsException("Índice inválido!");
+        }
+        return fila[indice];
+    }
 
     public FilaObj(int capacidade) {
-        fila = new String[capacidade];
+        fila = (T[])new Object[capacidade];
         tamanho = 0;
     }
 
@@ -17,7 +27,7 @@ public class FilaObj {
         return tamanho == fila.length;
     }
 
-    public void insert(String info) {
+    public void insert(T info) {
         if (isFull()) {
             throw new IllegalStateException("Fila cheia!");
         }
@@ -27,12 +37,12 @@ public class FilaObj {
 
     }
 
-    public String peek() {
+    public T peek() {
         return fila[0];
     }
 
-    public String poll() {
-        String primeiro = fila[0];
+    public T poll() {
+        T primeiro = fila[0];
 
         if (!isEmpty()) {
             for (int i = 0; i < tamanho - 1; i++) {
@@ -56,6 +66,14 @@ public class FilaObj {
             }
         }
 
+    }
+
+    public List<T> toList() {
+        List<T> lista = new ArrayList<>();
+        for (int i = 0; i < tamanho; i++) {
+            lista.add(fila[i]);
+        }
+        return lista;
     }
 
     public int getTamanho(){
