@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
 
-    @Query("select r from Usuario u join Reserva r on u.idUsuario = r.usuario.idUsuario")
+    @Query("select r from Usuario u join Reserva r on :id = r.usuario.idUsuario")
     List<Reserva> findReservaByUsuarioId(Integer id);
-    @Query("select r from Estabelecimento e join Reserva r on e.idEstabelecimento = r.estabelecimento.idEstabelecimento")
+    @Query("select r from Estabelecimento e join Reserva r on :id = r.estabelecimento.idEstabelecimento")
     List<Reserva> findReservaByEstabelecimentoId(Integer id);
 }
