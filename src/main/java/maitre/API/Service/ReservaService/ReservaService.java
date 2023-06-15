@@ -40,7 +40,15 @@ public class ReservaService {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
-    public List<Reserva> buscarReservaPorUsuarioId(Integer idUsuario){
+    public List<Estabelecimento> buscarReservaPorUsuarioId(Integer idUsuario){
+        List<Estabelecimento> listReserva = reservaRepository.findEstabelecimentoWithReservaByUsuarioId(idUsuario);
+        if(listReserva.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
+        return listReserva;
+    }
+
+    public List<Reserva> buscarReservaPorUsuarioIdLista(Integer idUsuario){
         List<Reserva> listReserva = reservaRepository.findReservaByUsuarioId(idUsuario);
         if(listReserva.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NO_CONTENT);
@@ -48,8 +56,8 @@ public class ReservaService {
         return listReserva;
     }
 
-    public List<Reserva> buscarReservaPorEstabelecimentoId(Integer idEstabelecimento){
-        List<Reserva> listReserva = reservaRepository.findReservaByEstabelecimentoId(idEstabelecimento);
+    public List<Usuario> buscarReservaPorEstabelecimentoId(Integer idEstabelecimento){
+        List<Usuario> listReserva = reservaRepository.findUsuarioWithReservaByEstabelecimentoId(idEstabelecimento);
         if(listReserva.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         }

@@ -3,6 +3,7 @@ package maitre.API.Controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import maitre.API.Domain.Estabelecimento;
 import maitre.API.Domain.Reserva;
 import maitre.API.Domain.Usuario;
 import maitre.API.Service.EstabelecimentoService.EstabelecimentoService;
@@ -38,14 +39,14 @@ public class ReservaController {
     }
 
     @GetMapping("/busca-por-usuario/{idUsuario}")
-    public ResponseEntity<List<Reserva>> buscarReservaPorUsuarioId(@PathVariable Integer idUsuario){
-        List<Reserva> listReserva = reservaService.buscarReservaPorUsuarioId(idUsuario);
+    public ResponseEntity<List<Estabelecimento>> buscarReservaPorUsuarioId(@PathVariable Integer idUsuario){
+        List<Estabelecimento> listReserva = reservaService.buscarReservaPorUsuarioId(idUsuario);
         return ResponseEntity.status(200).body(listReserva);
     }
 
     @GetMapping("/busca-por-estabelecimento/{idEstabelecimento}")
-    public ResponseEntity<List<Reserva>> buscarReservaPorEstabelecimentoId(@PathVariable Integer idEstabelecimento){
-        List<Reserva> listReserva = reservaService.buscarReservaPorEstabelecimentoId(idEstabelecimento);
+    public ResponseEntity<List<Usuario>> buscarReservaPorEstabelecimentoId(@PathVariable Integer idEstabelecimento){
+        List<Usuario> listReserva = reservaService.buscarReservaPorEstabelecimentoId(idEstabelecimento);
         return ResponseEntity.status(200).body(listReserva);
     }
 
@@ -78,7 +79,7 @@ public class ReservaController {
 
 //        return ResponseEntity.ok(buscarPosicaoUsuarioFilaPorId(idUsuario).getBody());
 
-        List<Reserva> listReserva = reservaService.buscarReservaPorUsuarioId(idUsuario);
+        List<Reserva> listReserva = reservaService.buscarReservaPorUsuarioIdLista(idUsuario);
         if (listReserva.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
