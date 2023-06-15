@@ -197,17 +197,18 @@ public class ReservaServiceTest {
 
         usuarioRepository.save(usuario);
 
+
         //when
         Mockito.when(reservaRepository.findById(1)).thenReturn(Optional.of(reserva));
 
         //then
-        List<Reserva> resultado;
+        List<Estabelecimento> resultado;
         resultado = reservaService.buscarReservaPorUsuarioId(1);
 
         //assert
         assertNotNull(resultado);
         if (resultado.size() > 0)
-            assertTrue(resultado.stream().anyMatch(item -> item.getId().equals(reserva.getId())));
+            assertTrue(resultado.stream().anyMatch(item -> item.getReservas().stream().map(reserva1 -> reserva1.getId()).equals(1)));
     }
 
     @Test
@@ -223,13 +224,13 @@ public class ReservaServiceTest {
         Mockito.when(reservaRepository.findById(1)).thenReturn(Optional.of(reserva));
 
         //then
-        List<Reserva> resultado;
+        List<Usuario> resultado;
         resultado = reservaService.buscarReservaPorEstabelecimentoId(1);
 
         //assert
         assertNotNull(resultado);
         if (resultado.size() > 0)
-            assertTrue(resultado.stream().anyMatch(item -> item.getId().equals(reserva.getId())));
+            assertTrue(resultado.stream().anyMatch(item -> item.getReservas().stream().map(reserva1 -> reserva1.getId()).equals(1)));
     }
 }
 
