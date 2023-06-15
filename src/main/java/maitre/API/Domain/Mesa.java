@@ -1,5 +1,6 @@
 package maitre.API.Domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -9,17 +10,19 @@ public class Mesa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idMesa;
     private Boolean disponivel;
+    @JoinColumn(name="fkMesa")
+    @JsonManagedReference(value="assentos-mesa")
     @OneToMany
     private List<Assento> assentos;
 
     public Integer getId() {
-        return id;
+        return idMesa;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idMesa) {
+        this.idMesa = idMesa;
     }
 
     public Boolean getDisponivel() {

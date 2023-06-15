@@ -16,7 +16,7 @@ public class EstabelecimentoBuilder {
 
     public static Estabelecimento criarEstabelecimento() {
         Estabelecimento estabelecimento = new Estabelecimento();
-        estabelecimento.setId(1);
+        estabelecimento.setIdEstabelecimento(1);
         estabelecimento.setNome("Nome do Estabelecimento");
         estabelecimento.setSenha("senha");
         estabelecimento.setLogradouro("Rua Principal");

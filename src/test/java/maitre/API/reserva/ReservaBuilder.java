@@ -28,7 +28,8 @@ public class ReservaBuilder {
     }
 
     public static Usuario criarUsuario() {
-        return new Usuario(1, "Mayla", "Mayla@gmail.com", "40023689540", "119789456123", "985624250", "abc123");
+        LocalDate dtNasc =  LocalDate.of(2000,07, 12);
+        return new Usuario(1, "Mayla", "Mayla@gmail.com", "40023689540", dtNasc ,  "119789456123", "985624250", "abc123", "Rock, pop, cerveja");
 
     }
     public static CriacaoReservaDto criacaoReservaDto(){
@@ -41,7 +42,8 @@ public class ReservaBuilder {
         List<Assento> assentos = new ArrayList<>();
         assentos.add(new Assento());
         Estabelecimento estabelecimento = new Estabelecimento();
-        Usuario usuario = new Usuario();
+        LocalDate dtNasc =  LocalDate.of(2000,07, 12);
+        Usuario usuario = new Usuario( 1, "Mayla", "Mayla@gmail.com", "40023689540", dtNasc ,  "119789456123", "985624250", "abc123", "Rock, pop, cerveja");
         return new CriacaoReservaDto();
     }
     }

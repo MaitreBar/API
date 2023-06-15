@@ -1,7 +1,13 @@
 package maitre.API.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.sql.Time;
 import java.time.LocalDate;
@@ -14,7 +20,7 @@ public class Reserva {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idReserva;
     @FutureOrPresent
     private LocalDate dtReserva;
     private LocalTime horaReserva;
@@ -23,15 +29,21 @@ public class Reserva {
     private boolean checkOut;
     private LocalDateTime dtHoraCheckOut;
     private String feedback;
+    @JoinColumn(name="fkEstabelecimento")
+    @JsonBackReference(value="reservas-estabelecimento")
     @ManyToOne
     private Estabelecimento estabelecimento;
+    @JoinColumn(name="fkUsuario")
+    @JsonBackReference(value="reservas-usuario")
     @ManyToOne
     private Usuario usuario;
-    @OneToMany
+    @JoinColumn(name="fkReserva")
+    @JsonManagedReference(value="assentos-reserva")
+    @OneToMany @Fetch(FetchMode.JOIN)
     private List<Assento> assentos;
 
-    public Reserva(Integer id, LocalDate dtReserva, Time horaReserva, Boolean checkIn, LocalDateTime dtHoraCheckIn, boolean checkOut, LocalDateTime dtHoraCheckOut, String feedback) {
-        this.id = id;
+    public Reserva(Integer idReserva, LocalDate dtReserva, Time horaReserva, Boolean checkIn, LocalDateTime dtHoraCheckIn, boolean checkOut, LocalDateTime dtHoraCheckOut, String feedback) {
+        this.idReserva = idReserva;
         this.dtReserva = dtReserva;
         this.horaReserva = horaReserva.toLocalTime();
         this.checkIn = checkIn;
@@ -58,11 +70,11 @@ public class Reserva {
     }
 
     public Integer getId() {
-        return id;
+        return idReserva;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idReserva) {
+        this.idReserva = idReserva;
     }
 
     public LocalDate getDtReserva() {
@@ -127,19 +139,6 @@ public class Reserva {
 
     public void setAssentos(List<Assento> assentos) {
         this.assentos = assentos;
-    }
-
-    @Override
-    public String toString() {
-        return "Reserva{" +
-                "id=" + id +
-                ", dtReserva=" + dtReserva +
-                ", horaReserva=" + horaReserva +
-                ", checkIn=" + checkIn +
-                ", dtHoraCheckIn=" + dtHoraCheckIn +
-                ", checkOut=" + checkOut +
-                ", dtHoraCheckOut=" + dtHoraCheckOut +
-                '}';
     }
 
     public void setEstabelecimento(Estabelecimento estabelecimento) {

@@ -3,7 +3,6 @@ package maitre.API.Controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import maitre.API.Domain.Estabelecimento;
 import maitre.API.Domain.Reserva;
 import maitre.API.Domain.Usuario;
 import maitre.API.Service.EstabelecimentoService.EstabelecimentoService;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Tag(name = "Reserva", description = "Endpoints reserva")
 
@@ -73,6 +71,22 @@ public class ReservaController {
     public ResponseEntity<Void> deletarReserva(@PathVariable Integer id){
         reservaService.deletarReserva(id);
         return ResponseEntity.status(200).build();
+    }
+
+    @GetMapping("/posicaoReserva/{idUsuario}")
+    public ResponseEntity<Integer> buscarPosicaoUsuarioFilaPorId(@PathVariable Integer idUsuario){
+
+//        return ResponseEntity.ok(buscarPosicaoUsuarioFilaPorId(idUsuario).getBody());
+
+        List<Reserva> listReserva = reservaService.buscarReservaPorUsuarioId(idUsuario);
+        if (listReserva.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        Reserva reserva = listReserva.get(0);
+        Usuario usuario = reserva.getUsuario();
+
+        return ResponseEntity.ok(idUsuario);
+
     }
 
 }

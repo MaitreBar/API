@@ -1,6 +1,11 @@
 package maitre.API.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -9,7 +14,7 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idUsuario;
     private String nome;
     private String email;
     private String cpf;
@@ -18,24 +23,24 @@ public class Usuario {
     private String rg;
     private String senha;
     private String tags;
+    @JoinColumn(name="fkUsuario")
+    @JsonManagedReference(value="reservas-usuario")
+    @OneToMany @Fetch(FetchMode.JOIN)
+    private List<Reserva> reservas;
 
-
-    public Usuario(Integer id, String nome, String email, String cpf,  String celular, String rg, String senha) {
-        this.id = id;
+    public Usuario(Integer idUsuario, String nome, String email, String cpf, LocalDate dtNasc, String celular, String rg, String senha, String tags) {
+        this.idUsuario = idUsuario;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
+        this.dtNasc = dtNasc;
         this.celular = celular;
         this.rg = rg;
         this.senha = senha;
         this.tags = tags;
     }
 
-    @OneToMany
-    private List<Reserva> reservas;
-
     public Usuario() {
-
     }
 
     public List<Reserva> getReservas() {
@@ -63,11 +68,11 @@ public class Usuario {
     }
 
     public Integer getId() {
-        return id;
+        return idUsuario;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNome() {

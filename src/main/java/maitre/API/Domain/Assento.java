@@ -1,24 +1,32 @@
 package maitre.API.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.persistence.*;
 
 @Entity
 public class Assento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idAssento;
     public Boolean disponivel;
+    @ManyToOne
+    @JsonBackReference(value="assentos-reserva")
+    @JoinColumn(name="fkReserva")
+    public Reserva reserva;
+    @ManyToOne
+    @JsonBackReference(value="assentos-estabelecimento")
+    @JoinColumn(name="fkEstabelecimento")
+    public Estabelecimento estabelecimento;
 
     public Integer getId() {
-        return id;
+        return idAssento;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idAssento) {
+        this.idAssento = idAssento;
     }
 
     public Boolean getDisponivel() {
@@ -32,7 +40,7 @@ public class Assento {
     @Override
     public String toString() {
         return "Assento{" +
-                "id=" + id +
+                "idAssento=" + idAssento +
                 ", disponivel=" + disponivel +
                 '}';
     }

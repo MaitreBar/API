@@ -50,7 +50,7 @@ public class AssentoController {
         return ResponseEntity.status(201).body(assento);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Assento> atualizarAssento(@RequestBody Assento a){
         Assento assento = assentoRepository.save(a);
         return ResponseEntity.status(200).body(assento);

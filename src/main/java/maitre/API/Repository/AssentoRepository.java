@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface AssentoRepository extends JpaRepository<Assento, Integer> {
-    @Query("select e.assentos from Estabelecimento e where e.id = :id")
+    @Query("select e.assentos from Estabelecimento e where e.idEstabelecimento = :id")
     List<Assento> findAssentoByEstabelecimentoId(Integer id);
 }

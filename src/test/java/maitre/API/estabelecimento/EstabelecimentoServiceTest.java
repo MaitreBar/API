@@ -43,7 +43,7 @@ public class EstabelecimentoServiceTest {
 
         // assert
         assertTrue(resultado.isPresent());
-        assertEquals(estabelecimento.getId(), resultado.get().getId());
+        assertEquals(estabelecimento.getIdEstabelecimento(), resultado.get().getIdEstabelecimento());
         assertEquals(estabelecimento.getNome(), resultado.get().getNome());
     }
 
@@ -52,11 +52,11 @@ public class EstabelecimentoServiceTest {
     void deveRetornarListaDeEstabelecimento() {
         // given
         Estabelecimento estabelecimento1 = new Estabelecimento();
-        estabelecimento1.setId(1);
+        estabelecimento1.setIdEstabelecimento(1);
         estabelecimento1.setNome("Estabelecimento 1");
 
         Estabelecimento estabelecimento2 = new Estabelecimento();
-        estabelecimento2.setId(2);
+        estabelecimento2.setIdEstabelecimento(2);
         estabelecimento2.setNome("Estabelecimento 2");
 
         List<Estabelecimento> listaEstabelecimentos = Arrays.asList(estabelecimento1, estabelecimento2);
@@ -67,9 +67,9 @@ public class EstabelecimentoServiceTest {
 
         // then
         assertEquals(listaEstabelecimentos.size(), resultado.size());
-        assertEquals(listaEstabelecimentos.get(0).getId(), resultado.get(0).getId());
+        assertEquals(listaEstabelecimentos.get(0).getIdEstabelecimento(), resultado.get(0).getIdEstabelecimento());
         assertEquals(listaEstabelecimentos.get(0).getNome(), resultado.get(0).getNome());
-        assertEquals(listaEstabelecimentos.get(1).getId(), resultado.get(1).getId());
+        assertEquals(listaEstabelecimentos.get(1).getIdEstabelecimento(), resultado.get(1).getIdEstabelecimento());
         assertEquals(listaEstabelecimentos.get(1).getNome(), resultado.get(1).getNome());
     }
 

@@ -1,7 +1,7 @@
 INSERT INTO estabelecimento
 (nome, logradouro, email, senha, numero, cep, cnpj, tags, horario_abertura, horario_fechamento)
 VALUES
-('Terraço','Rua terraço', 'terraco@email.com', '123', '16', '0491400', '159753', 'Batata frita com torresmo, Torre de chopp, Jazz', '16:00', '23:00');
+('Terraço','Rua Adalberto Cândido de Melo', 'terraco@email.com', '123', '16', '08011560', '159753', 'Batata frita com torresmo, Torre de chopp, Jazz', '16:00', '23:00');
 
 INSERT INTO assento
 (disponivel)
@@ -45,7 +45,7 @@ VALUES
 INSERT INTO reserva
 (dt_reserva, hora_reserva, check_in, dt_hora_check_in, check_out, dt_hora_check_out)
 VALUES
-    ('2023-11-10', '17:30:00', false, null, false, null);
+    ('2023-11-10', '19:30:00', false, null, false, null);
 
 INSERT INTO estabelecimento_assentos
 VALUES (1,1);
