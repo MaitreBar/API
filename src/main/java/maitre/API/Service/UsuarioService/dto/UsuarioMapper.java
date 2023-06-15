@@ -61,4 +61,19 @@ public class UsuarioMapper {
 
         return perfilUsuarioDto;
     }
+
+    public static FilaUsuarioDto mapFilaDto(Usuario usuario) {
+        FilaUsuarioDto filaUsuarioDto = new FilaUsuarioDto();
+
+        filaUsuarioDto.setId(usuario.getId());
+        filaUsuarioDto.setNome(usuario.getNome());
+        filaUsuarioDto.setEmail(usuario.getEmail());
+        filaUsuarioDto.setCpf(usuario.getCpf());
+        filaUsuarioDto.setDtNasc(usuario.getDtNasc());
+        filaUsuarioDto.setCelular(usuario.getCelular());
+        filaUsuarioDto.setRg(usuario.getRg());
+        filaUsuarioDto.setTags(usuario.getTags());
+
+        return filaUsuarioDto;
+    }
 }

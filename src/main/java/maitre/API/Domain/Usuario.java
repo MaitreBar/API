@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +25,7 @@ public class Usuario {
     private String tags;
     @JoinColumn(name="fkUsuario")
     @JsonManagedReference
-    @OneToMany
+    @OneToMany @Fetch(FetchMode.JOIN)
     private List<Reserva> reservas;
 
     public List<Reserva> getReservas() {
