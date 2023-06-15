@@ -1,6 +1,8 @@
 package maitre.API.Service.EstabelecimentoService;
 
 import maitre.API.Domain.Estabelecimento;
+import maitre.API.Domain.FilaObj;
+import maitre.API.Domain.PilhaObj;
 import maitre.API.Domain.Reserva;
 import maitre.API.ListaObj.ListaObj;
 import maitre.API.Repository.EstabelecimentoRepository;
@@ -25,7 +27,24 @@ public class EstabelecimentoService {
 
     public List<Estabelecimento> listar() {
         List<Estabelecimento> lista = estabelecimentoRepository.findAll();
-        return lista;
+        FilaObj<Estabelecimento> estabelecimentoFilaObj = new FilaObj<>(100);
+
+        for (int i = 0; i < lista.size(); i++) {
+            estabelecimentoFilaObj.insert(lista.get(i));
+        }
+
+        PilhaObj<Estabelecimento> estabelecimentoPilhaObj = new PilhaObj<>(100);
+        List<Estabelecimento> listaEmpilhada = new ArrayList<>(100);
+
+        for (int i = 0; i < estabelecimentoFilaObj.getTamanho(); i++) {
+           estabelecimentoPilhaObj.push(estabelecimentoFilaObj.get(i));
+//            estabelecimentoPilhaObj.pop();
+        }
+        for (int i = 0; i < estabelecimentoPilhaObj.getTopo()+1; i++) {
+            listaEmpilhada.add(estabelecimentoPilhaObj.buscaPorPosicao(i));
+        }
+
+        return listaEmpilhada;
     }
 
     public Estabelecimento login(String email, String senha) {
