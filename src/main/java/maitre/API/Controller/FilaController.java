@@ -1,11 +1,9 @@
-package maitre.API.FIla;
+package maitre.API.Controller;
 
-import maitre.API.Controller.ReservaController;
 import maitre.API.Domain.Usuario;
-import maitre.API.Repository.UsuarioRepository;
+import maitre.API.Domain.FilaObj;
 import maitre.API.Service.ReservaService.ReservaService;
 import maitre.API.Service.UsuarioService.UsuarioService;
-import maitre.API.Service.UsuarioService.dto.FilaUsuarioDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +41,7 @@ public class FilaController {
         return ResponseEntity.ok("Usuário adicionado à fila");
     }
 
-    @GetMapping("/remover-usuario")
+    @DeleteMapping("/remover-usuario")
     public ResponseEntity<Usuario> removerUsuario() {
         if (fila.isEmpty()) {
             return ResponseEntity.ok(null);
