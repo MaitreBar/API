@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,7 +38,7 @@ public class Reserva {
     private Usuario usuario;
     @JoinColumn(name="fkReserva")
     @JsonManagedReference(value="assentos-reserva")
-    @OneToMany
+    @OneToMany @Fetch(FetchMode.JOIN)
     private List<Assento> assentos;
 
     public String getFeedback() {
