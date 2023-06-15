@@ -1,7 +1,9 @@
 package maitre.API.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import maitre.API.Service.EstabelecimentoService.EstabelecimentoService;
 
 @Entity
 public class Assento {
@@ -11,9 +13,11 @@ public class Assento {
     private Integer idAssento;
     public Boolean disponivel;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name="fkReserva")
     public Reserva reserva;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name="fkEstabelecimento")
     public Estabelecimento estabelecimento;
 

@@ -1,5 +1,5 @@
 package maitre.API.Domain;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -25,10 +25,12 @@ public class Estabelecimento {
     private String descricao;
     private String email;
     @JoinColumn(name="fkEstabelecimento")
+    @JsonManagedReference
     @OneToMany
     private List<Assento> assentos;
     private String tags;
     @JoinColumn(name="fkEstabelecimento")
+    @JsonManagedReference
     @OneToMany
     private List<Reserva> reservas;
 

@@ -1,5 +1,9 @@
 package maitre.API.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 
@@ -23,11 +27,15 @@ public class Reserva {
     private LocalDateTime dtHoraCheckOut;
     private String feedback;
     @JoinColumn(name="fkEstabelecimento")
+    @JsonBackReference
     @ManyToOne
     private Estabelecimento estabelecimento;
     @JoinColumn(name="fkUsuario")
+    @JsonBackReference
     @ManyToOne
     private Usuario usuario;
+    @JoinColumn(name="fkReserva")
+    @JsonManagedReference
     @OneToMany
     private List<Assento> assentos;
 

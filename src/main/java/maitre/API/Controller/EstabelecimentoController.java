@@ -118,7 +118,7 @@ public class EstabelecimentoController {
         try {
             for (int i = 0; i < lista.getTamanho(); i++) {
                 Estabelecimento estabelecimento = lista.getElemento(i);
-                saida.format("%d;%s;%s;%s;%S;%S;%S;%S;%S;%S;%S;%S\n",
+                saida.format("%d;%s;%s;%s;%S;%S;%S;%S;%S;\n",
                         estabelecimento.getIdEstabelecimento(),estabelecimento.getNome(),estabelecimento.getLogradouro(),
                         estabelecimento.getNumero(),estabelecimento.getCep(),estabelecimento.getCnpj(),
                         estabelecimento.getAssentos(),estabelecimento.getTags(),estabelecimento.getReservas());

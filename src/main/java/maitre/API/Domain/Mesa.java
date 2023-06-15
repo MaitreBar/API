@@ -1,5 +1,6 @@
 package maitre.API.Domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,6 +12,8 @@ public class Mesa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMesa;
     private Boolean disponivel;
+    @JoinColumn(name="fkMesa")
+    @JsonManagedReference
     @OneToMany
     private List<Assento> assentos;
 
