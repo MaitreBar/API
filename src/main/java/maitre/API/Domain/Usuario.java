@@ -18,8 +18,25 @@ public class Usuario {
     private String rg;
     private String senha;
     private String tags;
+
+
+    public Usuario(Integer id, String nome, String email, String cpf,  String celular, String rg, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.celular = celular;
+        this.rg = rg;
+        this.senha = senha;
+        this.tags = tags;
+    }
+
     @OneToMany
     private List<Reserva> reservas;
+
+    public Usuario() {
+
+    }
 
     public List<Reserva> getReservas() {
         return reservas;

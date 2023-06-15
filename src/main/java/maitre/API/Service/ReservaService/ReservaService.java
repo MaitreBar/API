@@ -42,7 +42,7 @@ public class ReservaService {
 
     public List<Reserva> buscarReservaPorUsuarioId(Integer idUsuario){
         List<Reserva> listReserva = reservaRepository.findReservaByUsuarioId(idUsuario);
-        if(listReserva.isEmpty()){
+       if(listReserva.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         }
         return listReserva;

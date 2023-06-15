@@ -3,6 +3,7 @@ package maitre.API.Domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -19,7 +20,7 @@ public class Reserva {
     private LocalTime horaReserva;
     private Boolean checkIn;
     private LocalDateTime dtHoraCheckIn;
-    private Boolean checkOut;
+    private boolean checkOut;
     private LocalDateTime dtHoraCheckOut;
     private String feedback;
     @ManyToOne
@@ -28,6 +29,25 @@ public class Reserva {
     private Usuario usuario;
     @OneToMany
     private List<Assento> assentos;
+
+    public Reserva(Integer id, LocalDate dtReserva, Time horaReserva, Boolean checkIn, LocalDateTime dtHoraCheckIn, boolean checkOut, LocalDateTime dtHoraCheckOut, String feedback) {
+        this.id = id;
+        this.dtReserva = dtReserva;
+        this.horaReserva = horaReserva.toLocalTime();
+        this.checkIn = checkIn;
+        this.dtHoraCheckIn = dtHoraCheckIn;
+        this.checkOut = checkOut;
+        this.dtHoraCheckOut = dtHoraCheckOut;
+        this.feedback = feedback;
+    }
+
+    public Reserva(int id, LocalDate dtReserva, Time hrReserva, Boolean checkIn, Boolean checkOut, LocalDateTime dtHoraCheckIn, LocalDateTime dtHoraCheckOut, String feedback) {
+
+    }
+
+    public Reserva() {
+
+    }
 
     public String getFeedback() {
         return feedback;
@@ -77,11 +97,11 @@ public class Reserva {
         this.dtHoraCheckIn = dtHoraCheckIn;
     }
 
-    public Boolean getCheckOut() {
+    public boolean isCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Boolean checkOut) {
+    public void setCheckOut(boolean checkOut) {
         this.checkOut = checkOut;
     }
 
