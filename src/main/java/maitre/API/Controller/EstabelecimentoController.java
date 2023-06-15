@@ -36,10 +36,9 @@ public class EstabelecimentoController {
     @GetMapping("/{email}/{senha}")
     public ResponseEntity<Estabelecimento> login(@PathVariable String email, @PathVariable String senha) {
         Estabelecimento estabelecimento = estabelecimentoService.login(email, senha);
-        ListaObj<Estabelecimento> listaEstabelecimento = new ListaObj<>(5);
+        ListaObj<Estabelecimento> listaEstabelecimento = new ListaObj<>(100);
         listaEstabelecimento.adiciona(estabelecimento);
-
-        listaEstabelecimento.exibe();
+//        listaEstabelecimento.exibe();
         gravarArquivoCsv(listaEstabelecimento, "Estabelecimento");
         return ResponseEntity.ok(estabelecimento);
     }
@@ -118,10 +117,18 @@ public class EstabelecimentoController {
         try {
             for (int i = 0; i < lista.getTamanho(); i++) {
                 Estabelecimento estabelecimento = lista.getElemento(i);
-                saida.format("%d;%s;%s;%s;%S;%S;%S;%S;%S;\n",
-                        estabelecimento.getIdEstabelecimento(),estabelecimento.getNome(),estabelecimento.getLogradouro(),
-                        estabelecimento.getNumero(),estabelecimento.getCep(),estabelecimento.getCnpj(),
-                        estabelecimento.getAssentos(),estabelecimento.getTags(),estabelecimento.getReservas());
+                saida.format("%d;%S;%S;%S;%S;%S;%S;%S;%S;%S;%S\n",
+                        estabelecimento.getIdEstabelecimento(),
+                        estabelecimento.getNome(),
+                        estabelecimento.getLogradouro(),
+                        estabelecimento.getNumero(),
+                        estabelecimento.getCnpj(),
+                        estabelecimento.getEmail(),
+                        estabelecimento.getTelefoneContato(),
+                        estabelecimento.getTags(),
+                        estabelecimento.getHorarioAbertura(),
+                        estabelecimento.getHorarioFechamento(),
+                        estabelecimento.getDiasDaSemana());
             }
         } catch (FormatterClosedException erro) {
             System.out.println("Erro ao gravar o arquivo");
