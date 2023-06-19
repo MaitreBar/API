@@ -1,6 +1,7 @@
 package maitre.API.Service.EstabelecimentoService.dto;
 
 import maitre.API.Domain.Estabelecimento;
+import maitre.API.Service.EstabelecimentoService.EstabelecimentoService;
 
 public class EstabelecimentoMapper {
 

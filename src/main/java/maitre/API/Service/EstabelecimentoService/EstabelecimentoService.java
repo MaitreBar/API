@@ -8,16 +8,15 @@ import maitre.API.ListaObj.ListaObj;
 import maitre.API.Repository.EstabelecimentoRepository;
 import maitre.API.Service.EstabelecimentoService.dto.AtualizacaoEstabelecimentoDTO;
 import maitre.API.Service.EstabelecimentoService.dto.EstabelecimentoMapper;
+import maitre.API.Service.EstabelecimentoService.dto.PerfilEstabelecimentoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -37,10 +36,10 @@ public class EstabelecimentoService {
         List<Estabelecimento> listaEmpilhada = new ArrayList<>(100);
 
         for (int i = 0; i < estabelecimentoFilaObj.getTamanho(); i++) {
-           estabelecimentoPilhaObj.push(estabelecimentoFilaObj.get(i));
+            estabelecimentoPilhaObj.push(estabelecimentoFilaObj.get(i));
 //            estabelecimentoPilhaObj.pop();
         }
-        for (int i = 0; i < estabelecimentoPilhaObj.getTopo()+1; i++) {
+        for (int i = 0; i < estabelecimentoPilhaObj.getTopo() + 1; i++) {
             listaEmpilhada.add(estabelecimentoPilhaObj.buscaPorPosicao(i));
         }
 
@@ -147,7 +146,6 @@ public class EstabelecimentoService {
             saida = new Formatter(arq);
         } catch (IOException erro) {
             System.out.println("Ocorreu um erro ao abrir");
-            System.exit(1);
         }
 
         try {
@@ -179,7 +177,6 @@ public class EstabelecimentoService {
             entrada = new Scanner(arq).useDelimiter(";|\\n");
         } catch (FileNotFoundException erro) {
             System.out.println("Arquivo nao encontrado");
-            System.exit(1);
         }
 
         try {
@@ -213,4 +210,144 @@ public class EstabelecimentoService {
             }
         }
     }
+
+    public static void gravaRegistro(String registro, String nomeArq) {
+        BufferedWriter saida = null;
+
+        // Bloco try-catch para abrir o arquivo
+        try {
+            saida = new BufferedWriter(new FileWriter(nomeArq, true));
+        } catch (IOException erro) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro ao abrir o arquivo!");
+
+        }
+
+        // Bloco try-catch para gravar e fechar o arquivo
+        try {
+            saida.append(registro + "\n");
+            saida.close();
+        } catch (IOException erro) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro ao gravar o arquivo!");
+        }
+    }
+
+    public String leArquivoTxtEstabelecimento(String nomeArq) {
+        BufferedReader entrada = null;
+        String registro, tipoRegistro;
+        String nome, rua, numero, bairro, cnpj, email, telefoneContato;
+        int contaRegDadosLidos = 0;
+        int qtdRegDadosGravados;
+
+        List<Estabelecimento> listaLida = new ArrayList<>();
+
+        // try-catch para abrir o arquivo
+        try {
+            entrada = new BufferedReader(new FileReader(nomeArq + ".txt"));
+        } catch (IOException erro) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Houve um erro ao realizar a leitura do arquivo txt (estabalecimentoService.leArquivoTxt: )");
+        }
+
+        // try-catch para ler e fechar o arquivo
+        try {
+            // le o 1o registro do arquivo
+            registro = entrada.readLine();
+
+            while (registro != null) {
+                tipoRegistro = registro.substring(0, 2);
+                if (tipoRegistro.equals("00")) {
+                    System.out.println("É um registro de header");
+                    System.out.println("Tipo do arquivo: " + registro.substring(2, 17));
+                    System.out.println("Data e hora de gravação do arquivo: " + registro.substring(17, 36));
+                    System.out.println("Versão do layout: " + registro.substring(36, 38));
+                } else if (tipoRegistro.equals("04")) {
+                    System.out.println("É um registro de trailer");
+                    qtdRegDadosGravados = Integer.parseInt(registro.substring(2, 7));
+
+                    if (qtdRegDadosGravados == contaRegDadosLidos) {
+                        System.out.println("Quantidade de registros de dados gravados compatível com quantidade de registros de dados lidos");
+                    } else {
+                        System.out.println("Quantidade de registros de dados gravados incompatível com quantidade de registros de dados lidos");
+                    }
+                } else if (tipoRegistro.equals("02")) {
+                    System.out.println("É um registro de dados ou  (Estabelecimento Parte 1)");
+                    nome = registro.substring(2, 102).trim();
+                    rua = registro.substring(102, 202).trim();
+                    numero = registro.substring(202, 207).trim();
+                    bairro = registro.substring(207, 252).trim();
+                    cnpj = registro.substring(252, 266).trim();
+                    email = registro.substring(266, 366).trim();
+                    telefoneContato = registro.substring(366, 391).trim();
+
+                    Estabelecimento estabelecimento = new Estabelecimento(nome, rua, numero, bairro, cnpj, email, telefoneContato);
+                    contaRegDadosLidos++;
+
+                    // Para importar essa informação ao banco de dados:
+                    // repository.save(a);
+
+                    // No nosso caso, como não estamos conectados a banco de dados
+                    // vamos adicionar esse aluno a uma lista
+                    listaLida.add(estabelecimento);
+                } else {
+                    System.out.println("Tipo de registro inválido!");
+                }
+                // le o próximo registro
+                registro = entrada.readLine();
+            }
+            entrada.close();
+        } catch (IOException erro) {
+            System.out.println("Erro ao ler o arquivo");
+        }
+
+        String retorno = "";
+        // Exibe a lista lida
+        System.out.println("\nLista contendo os dados lidos do arquivo:");
+        for (Estabelecimento e : listaLida) {
+            retorno += String.format("%d Registro: %s\n", listaLida.indexOf(e)+1, e);
+            System.out.println(e);
+        }
+
+        return retorno;
+
+        // Se quiser importar a lista toda de uma vez para o banco:
+        // repository.saveAll(listaLida);
+    }
+
+
+    public String exportArquivoTxt(String nomeArq) {
+        int contaRegDadosGravados = 0;
+        List<Estabelecimento> estabelecimentos = estabelecimentoRepository.findAll();
+//        List<EnderecoTxtDTO> enderecos = enderecoService.findAll().stream().map(EnderecoMapper::mapToTxt).toList();
+
+        // Monta o registro de header
+        String header = "00Estabelecimento";
+        header += LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+        header += "01";
+        nomeArq += ".txt";
+
+        // Grava o registro de header
+        gravaRegistro(header, nomeArq);
+
+        // Monta e grava os registros de dados ou registros de corpo
+        String corpo;
+        for (int i = 0; i < estabelecimentos.size(); i++) {
+            Estabelecimento e = estabelecimentos.get(i);
+            corpo = "02";
+            corpo += String.format("%-100.100s", e.getNome());
+            corpo += String.format("%-100.100s", e.getLogradouro());
+            corpo += String.format("%-50.50s", e.getNumero());
+//            corpo += String.format("%-45.45s", e.getBairro());
+            corpo += String.format("%14.14s", e.getCnpj());
+            corpo += String.format("%100.100s", e.getEmail());
+            corpo += String.format("%25.25s", e.getTelefoneContato() == null? "(11) 95125401215654213456": e.getTelefoneContato());
+            gravaRegistro(corpo, nomeArq);
+            contaRegDadosGravados++;
+        }
+
+        // Monta e grava o registro de trailer
+        String trailer = "04";
+        trailer += String.format("%05d", contaRegDadosGravados);
+        gravaRegistro(trailer, nomeArq);
+        return "Arquivo gerado com sucesso!!";
+    }
+
 }

@@ -2,6 +2,7 @@ package maitre.API.Domain;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,6 +34,35 @@ public class Estabelecimento {
     @JsonManagedReference(value="reservas-estabelecimento")
     @OneToMany
     private List<Reserva> reservas;
+
+    public Estabelecimento() {
+    }
+
+    public Estabelecimento(String nome, String logradouro, String numero, String bairro, String cnpj, String telefoneContato, String email) {
+        this.nome = nome;
+        this.logradouro = bairro;
+        this.logradouro += " " + logradouro;
+        this.numero = numero;
+        this.cnpj = cnpj;
+        this.telefoneContato = telefoneContato;
+        this.email = email;
+        this.assentos = new ArrayList<>();
+        this.reservas = new ArrayList<>();
+    }
+
+    public Estabelecimento(String nome, String logradouro, String numero, String cnpj, String telefoneContato, String horarioAbertura, String horarioFechamento, String email, String tags) {
+        this.nome = nome;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.cnpj = cnpj;
+        this.telefoneContato = telefoneContato;
+        this.horarioAbertura = horarioAbertura;
+        this.horarioFechamento = horarioFechamento;
+        this.email = email;
+        this.tags = tags;
+        this.assentos = new ArrayList<>();
+        this.reservas = new ArrayList<>();
+    }
 
     public String getFaixaDePreco() {
         return faixaDePreco;
@@ -196,4 +226,16 @@ public class Estabelecimento {
 //        }
 //        return stringReservas;
 //    }
+
+    @Override
+    public String toString() {
+        return "Estabelecimento{" +
+                ", nome='" + nome +
+                ", logradouro='" + logradouro + '\'' +
+                ", numero='" + numero + '\'' +
+                ", cnpj='" + cnpj + '\'' +
+                ", email='" + telefoneContato + '\'' +
+                ", telefoneContato='" + email + '\'' +
+                '}';
+    }
 }

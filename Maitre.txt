@@ -1,0 +1,4 @@
+00Estabelecimento18-06-2023 23:26:5001
+02Terraço                                                                                             Rua Domingos Afonso Sertão                                                                          182                                               12.345.678/000                                                                                   terraco@email.com(11) 95125401215654213456
+02Esquina                                                                                             Rua Cachoeira das Abelhas                                                                           10                                                16.554.106/541                                                                                   esquina@email.com(11) 95125401215654213456
+0400002

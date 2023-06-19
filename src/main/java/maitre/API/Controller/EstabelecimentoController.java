@@ -10,11 +10,10 @@ import maitre.API.Service.EstabelecimentoService.EstabelecimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Path;
 import java.util.*;
 
 @Tag(name = "Estabelecimento", description = "Endpoints Estabelecimento")
@@ -25,6 +24,8 @@ import java.util.*;
 public class EstabelecimentoController {
     @Autowired
     private EstabelecimentoService estabelecimentoService;
+
+    private Path diretorioBase = Path.of(System.getProperty("java.io.tmpdir") + "/arquivos"); // temporario
 
     @GetMapping
     @Operation(summary = "Lista todos os estabelecimentos disponíveis")
@@ -142,7 +143,7 @@ public class EstabelecimentoController {
                 erroB = true;
             }
             if (erroB) {
-                System.exit(1);
+                System.out.println("Deu erro b");
             }
         }
     }
@@ -199,5 +200,37 @@ public class EstabelecimentoController {
 //                System.exit(1);
 //            }
         }
+    }
+
+    @GetMapping("/download/")
+    public ResponseEntity<byte[]> download(@RequestParam String nomeArg){
+
+        // Tem que ver se o nome é lido no .resolve() com ou sem a extensão .txt
+        File file = this.diretorioBase.resolve(nomeArg + ".txt").toFile();
+        try {
+            InputStream fileInputStream = new FileInputStream(file);
+
+            return ResponseEntity.status(200)
+                    .header("Content-Disposition",
+                            "attachment; filename=" + "estabelecimento")
+                    .body(fileInputStream.readAllBytes());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(422, "Diretório não encontrado", null);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(422, "Não foi possível converter para byte[]", null);
+        }
+    }
+
+    @GetMapping("/export")
+    public ResponseEntity<String> exportArquivoTxt(@RequestParam String nomeArq){
+        return ResponseEntity.ok(estabelecimentoService.exportArquivoTxt(nomeArq));
+    }
+
+    @GetMapping("/import")
+    public ResponseEntity<String> importArquivoTxt(@RequestParam String nomeArq){
+//        estabelecimentoService.leArquivoTxtEstabelecimento(nomeArq);
+        return ResponseEntity.ok(estabelecimentoService.leArquivoTxtEstabelecimento(nomeArq));
     }
 }
