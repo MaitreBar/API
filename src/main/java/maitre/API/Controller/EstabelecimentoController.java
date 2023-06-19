@@ -35,6 +35,7 @@ public class EstabelecimentoController {
     }
 
     @GetMapping("/{email}/{senha}")
+    @Operation(summary = "Login Estabelecimento" )
     public ResponseEntity<Estabelecimento> login(@PathVariable String email, @PathVariable String senha) {
         Estabelecimento estabelecimento = estabelecimentoService.login(email, senha);
         ListaObj<Estabelecimento> listaEstabelecimento = new ListaObj<>(100);
@@ -45,24 +46,28 @@ public class EstabelecimentoController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Atualização de usuario" )
     public ResponseEntity<Estabelecimento> atualizaUser(@PathVariable Integer id, @RequestBody @Valid Estabelecimento e){
         Estabelecimento estabelecimentoAtualizado = estabelecimentoService.atualizaUser(id, e);
         return ResponseEntity.ok(estabelecimentoAtualizado);
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Retorna estabelecimento por id" )
     public ResponseEntity<Estabelecimento> buscarPorId(@PathVariable Integer id){
         Estabelecimento estabelecimento = estabelecimentoService.buscarPorId(id);
         return ResponseEntity.ok(estabelecimento);
     }
 
     @PostMapping
+    @Operation(summary = "Cadastra estabelecimento" )
     public ResponseEntity<Estabelecimento> cadastrar(@RequestBody Estabelecimento e){
         Estabelecimento estabelecimento = estabelecimentoService.cadastrar(e);
         return ResponseEntity.status(201).body(estabelecimento);
     }
 
     @PostMapping("/test")
+    @Operation(summary = "TESTE ERROR" )
     public ResponseEntity<Void> adiciona(@RequestBody Estabelecimento estabelecimento){
 //        return ResponseEntity.ok(estabelecimentoService.adiciona(estabelecimento));
         ListaObj<Estabelecimento> listaEstabelecimento = new ListaObj<>(5);
@@ -80,22 +85,26 @@ public class EstabelecimentoController {
     }
 
     @PutMapping("/{id}/reservas")
+    @Operation(summary = "Atualizar reservas" )
     public ResponseEntity<Void> atualizarListaReservas(@RequestBody Reserva r, @PathVariable Integer id){
         Optional<Estabelecimento> optionalEstabelecimento = estabelecimentoService.atualizarListaReservas(r, id);
         return optionalEstabelecimento.isPresent() ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 
     @PatchMapping ("/{id}/checkIn/{idReserva}")
+    @Operation(summary = "CheckIn" )
     public ResponseEntity<Void> checkIn(@PathVariable Integer id, @PathVariable Integer idReserva){
         return ResponseEntity.ok(estabelecimentoService.checkIn(id, idReserva));
     }
 
     @PatchMapping ("/{id}/checkOut/{idReserva}")
+    @Operation(summary = "CheckOut" )
     public ResponseEntity<Void> checkOut(@PathVariable Integer id, @PathVariable Integer idReserva){
         return ResponseEntity.ok(estabelecimentoService.checkOut(id, idReserva));
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Deletar Estabelecimento" )
     public ResponseEntity<Void> deletar(@PathVariable Integer id){
         return ResponseEntity.ok(estabelecimentoService.deletar(id));
     }
@@ -203,6 +212,7 @@ public class EstabelecimentoController {
     }
 
     @GetMapping("/download/")
+    @Operation(summary = "Download Arquizo txt" )
     public ResponseEntity<byte[]> download(@RequestParam String nomeArg){
 
         // Tem que ver se o nome é lido no .resolve() com ou sem a extensão .txt
@@ -224,11 +234,13 @@ public class EstabelecimentoController {
     }
 
     @GetMapping("/export")
+    @Operation(summary = "Exportação de arquivos" )
     public ResponseEntity<String> exportArquivoTxt(@RequestParam String nomeArq){
         return ResponseEntity.ok(estabelecimentoService.exportArquivoTxt(nomeArq));
     }
 
     @GetMapping("/import")
+    @Operation(summary = "Importação de txt" )
     public ResponseEntity<String> importArquivoTxt(@RequestParam String nomeArq){
 //        estabelecimentoService.leArquivoTxtEstabelecimento(nomeArq);
         return ResponseEntity.ok(estabelecimentoService.leArquivoTxtEstabelecimento(nomeArq));
