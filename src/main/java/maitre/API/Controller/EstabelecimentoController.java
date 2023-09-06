@@ -20,7 +20,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/estabelecimentos")
-@CrossOrigin("http://localhost:3000/")
+@CrossOrigin("*")
 public class EstabelecimentoController {
     @Autowired
     private EstabelecimentoService estabelecimentoService;

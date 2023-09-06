@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/assentos")
-@CrossOrigin("http://localhost:3000/")
+@CrossOrigin("*")
 public class AssentoController {
 
     @Autowired
