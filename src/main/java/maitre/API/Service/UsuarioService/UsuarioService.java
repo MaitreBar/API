@@ -57,6 +57,7 @@ public class UsuarioService {
 
     public Usuario atualizaUser(Integer id, Usuario usuario){
         usuario.setId(id);
+        usuario.setReservas(buscaPorId(id).getReservas());
         if (this.usuarioRepository.existsById(id)){
             Usuario usuarioAtualizado = this.usuarioRepository.save(usuario);
             return usuarioAtualizado;
