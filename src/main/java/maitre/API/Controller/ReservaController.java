@@ -44,6 +44,12 @@ public class ReservaController {
         return ResponseEntity.status(200).body(listReserva);
     }
 
+    @GetMapping("/busca-por-reserva/{idUsuario}")
+    public ResponseEntity<List<Estabelecimento>> buscarReservaPorUsuario(@PathVariable Integer idUsuario){
+        List<Estabelecimento> listReserva = reservaService.buscarReservaPorUsuarioIdLista2(idUsuario);
+        return ResponseEntity.status(200).body(listReserva);
+    }
+
     @GetMapping("/busca-por-estabelecimento/{idEstabelecimento}")
     public ResponseEntity<List<Usuario>> buscarReservaPorEstabelecimentoId(@PathVariable Integer idEstabelecimento){
         List<Usuario> listReserva = reservaService.buscarReservaPorEstabelecimentoId(idEstabelecimento);

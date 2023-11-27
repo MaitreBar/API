@@ -50,7 +50,15 @@ public class ReservaService {
 
     public List<Reserva> buscarReservaPorUsuarioIdLista(Integer idUsuario){
         List<Reserva> listReserva = reservaRepository.findReservaByUsuarioId(idUsuario);
-       if(listReserva.isEmpty()){
+        if(listReserva.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
+        return listReserva;
+    }
+
+    public List<Estabelecimento> buscarReservaPorUsuarioIdLista2(Integer idUsuario){
+        List<Estabelecimento> listReserva = reservaRepository.findReservasWithEstabelecimentoByUsuarioId(idUsuario);
+        if(listReserva.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         }
         return listReserva;

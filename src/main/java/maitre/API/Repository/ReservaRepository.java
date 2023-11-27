@@ -13,8 +13,11 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
     @Query("select r from Usuario u join Reserva r on :id = r.usuario.idUsuario")
     List<Reserva> findReservaByUsuarioId(Integer id);
 
-    @Query("select e from Estabelecimento e join Reserva r on e.idEstabelecimento = r.estabelecimento.idEstabelecimento where r.usuario.idUsuario = :id")
+    @Query("select e from Estabelecimento e left join Reserva r on e.idEstabelecimento = r.estabelecimento.idEstabelecimento left join Usuario u on r.usuario.idUsuario = u.idUsuario where u.idUsuario = :id")
     List<Estabelecimento> findEstabelecimentoWithReservaByUsuarioId(Integer id);
+
+    @Query("select r from Reserva r left join Estabelecimento e on e.idEstabelecimento = r.estabelecimento.idEstabelecimento left join Usuario u on r.usuario.idUsuario = u.idUsuario where u.idUsuario = :id")
+    List<Estabelecimento> findReservasWithEstabelecimentoByUsuarioId(Integer id);
 
     @Query("select r from Estabelecimento e join Reserva r on :id = r.estabelecimento.idEstabelecimento")
     List<Reserva> findReservaByEstabelecimentoId(Integer id);
